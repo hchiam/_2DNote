@@ -49,7 +49,7 @@
 <body onclick="playOrStop(event)" onmousemove="instructToClickToStop();adjustNotes(event);">
   <div id="main" role="main">
     <h1 id="audio-reminder" aria-hidden="true">Make sure audio is on</h1>
-    <p id="instruction" aria-live="true"></p>
+    <p id="instruction" aria-live="polite"></p>
   </div>
   <i id="sound-icon" class='fas fa-music'></i>
   <footer><a href="https://codepen.io/hchiam/full/eYYdVeX" 
@@ -165,7 +165,7 @@
 
     function instructToClickToStop() {
       if (on) {
-        document.getElementById('instruction').innerHTML = 'Move mouse to play with volume and pitch <br/><span style="color: lime;">Click to stop</span>';
+        document.getElementById('instruction').innerHTML = 'Move mouse to play with volume and pitch <br/><span style="color: lime;">Click anywhere to stop</span>';
       }
     }
 
