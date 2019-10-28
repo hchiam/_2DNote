@@ -3,7 +3,7 @@
 const _2DNote = {
 
   audioContext: new AudioContext(),
-  // multiple oscillators can use this one context
+
   note: null,
 
   play: function (e) { // e = event or element
