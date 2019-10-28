@@ -22,7 +22,6 @@
       position: fixed;
       left: calc(50% - 0.5em);
       top: calc(50% - 0.4em);
-      transition: 0.1s;
     }
 
     footer {
@@ -46,7 +45,8 @@
     }
   </style>
 </head>
-<body onclick="playOrStop(event)" onmousemove="instructToClickToStop();adjustNotes(event);">
+<!-- USE noteGenerator! -->
+<body onclick="playOrStop(event)" onmousemove="instructToClickToStop();noteGenerator.adjustNotes(event,colourSoundIcon);">
   <div id="main" role="main">
     <h1 id="audio-reminder" aria-hidden="true">Make sure audio is on</h1>
     <p id="instruction" aria-live="polite"></p>
@@ -55,6 +55,11 @@
   <footer>
     <p class="small-text">Potential use: 2D games that people can play together, regardless of vision capabilities?</p>
   </footer>
+
+  <!-- INCLUDE noteGenerator! -->
+  <script src="note-generator.js"></script>
+
+  <!-- USE noteGenerator! -->
   <script>
     setTimeout(function(){ 
       document.getElementById('instruction').innerHTML = 'Click anywhere to start';
@@ -62,92 +67,18 @@
 
     let on = false;
 
-    const audioCtx = new AudioContext();
-    // multiple oscillators can use this one context
-    let notes = [];
-
     function playOrStop(e) {
       if (on) {
         on = false;
-        stopNotes();
+        noteGenerator.stopNotes();
         instructToClickToStart();
       } else {
         on = true;
         hideAudioReminder();
         instructToMoveMouse();
-        playNote(e);
-        setTimeout(instructToClickToStop, 1000);
+        noteGenerator.playNote(e); 
       }
       toggleSoundIcon();
-    }
-
-    function playNote(e) {
-      // example usage: <body onmousemove="playNote(event)" style="width: 100vw; height: 100vh;"></body>
-      // can play another note simultaneously with another playNote(e) call
-      const frequency = getFrequencyFromX(e);
-      const volume = getVolumeFromY(e);
-      const volumeSetup = audioCtx.createGain();
-      volumeSetup.connect(audioCtx.destination);
-      volumeSetup.gain.value = volume;
-      const oscillator = audioCtx.createOscillator();
-      oscillator.type = 'sine';
-      oscillator.frequency.value = frequency;
-      oscillator.connect(volumeSetup);
-      // instead of oscillator.connect(audioCtx.destination);
-      oscillator.start();
-      // const delayThatAvoidsCrazyReverbs = 1;
-      // oscillator.stop(audioCtx.currentTime + delayThatAvoidsCrazyReverbs);
-      notes.push({oscillator, volumeSetup});
-    }
-
-    function adjustNotes(e) {
-      for (let i in notes) {
-        const frequency = getFrequencyFromX(e);
-        const volume = getVolumeFromY(e);
-        const volumeSetup = notes[i].volumeSetup;
-        volumeSetup.gain.value = volume;
-        const oscillator = notes[i].oscillator;
-        oscillator.frequency.value = frequency;
-        colourSoundIcon(volume, frequency);
-      }
-    }
-
-    function stopNotes() {
-      for (let i in notes) {
-        const oscillator = notes[i].oscillator;
-        oscillator.stop(audioCtx.currentTime);
-      }
-      notes = [];
-    }
-
-    function getFrequencyFromX(e) {
-      const screenWidth = e.currentTarget.offsetWidth;
-      const x = e.clientX;
-      const minComfyFreq = 150;
-      const maxComfyFreq = 400;
-      const frequency = normalize(x, 
-                                  0,screenWidth, 
-                                  minComfyFreq,maxComfyFreq);
-      return frequency;
-    }
-
-    function getVolumeFromY(e) {
-      // technically getting gain (which ranges 0 to 1)
-      const screenHeight = e.currentTarget.offsetHeight;
-      const y = e.clientY;
-      const minComfyVolume = 0;
-      const maxComfyVolume = 0.5;
-      const volume = normalize(y, 
-                               0,screenHeight, 
-                               minComfyVolume,maxComfyVolume);
-      return volume;
-    }
-
-    function normalize(value, inMin,inMax, outMin,outMax) {
-      const inputBias = value - inMin;
-      const ratioAdjustment = (outMax - outMin) / (inMax - inMin);
-      const outputBias = outMin;
-      return inputBias * ratioAdjustment + outputBias;
     }
 
     function instructToMoveMouse() {
@@ -179,18 +110,18 @@
     function colourSoundIcon(volume, frequency) {
       const minComfyVolume = 0;
       const maxComfyVolume = 0.5;
-      let volumeNum = normalize(volume, 
+      let volumeNum = noteGenerator.normalize(volume, 
                                 minComfyVolume,maxComfyVolume, 
                                 0,100);
       volumeNum = Math.round(volumeNum);
       const minComfyFreq = 150;
       const maxComfyFreq = 400;
-      let frequencyNum = normalize(frequency, 
-                                   minComfyFreq,maxComfyFreq, 
-                                   0,359);
+      let frequencyNum = noteGenerator.normalize(frequency, 
+                                  minComfyFreq,maxComfyFreq, 
+                                  0,359);
       frequencyNum = Math.round(frequencyNum);
       let output = 'hsl(' + String(frequencyNum) + ',' + String(volumeNum) + '%, 50%)';
-      console.log(output)
+      // console.log(output)
       document.getElementById('sound-icon').style.color = output;
     }
   </script>
