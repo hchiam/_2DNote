@@ -4,7 +4,7 @@ const noteGenerator = {
 
   audioContext: new AudioContext(),
   // multiple oscillators can use this one context
-  notes: [],
+  note: null,
 
   play: function playNote(e) {
     // example usage: <body onmousemove="noteGenerator.playNote(event)" style="width: 100vw; height: 100vh;"></body>
@@ -22,27 +22,23 @@ const noteGenerator = {
     oscillator.start();
     // const delayThatAvoidsCrazyReverbs = 1;
     // oscillator.stop(this.audioContext.currentTime + delayThatAvoidsCrazyReverbs);
-    this.notes.push({oscillator, volumeSetup});
+    this.note = {oscillator, volumeSetup};
   },
 
   update: function adjustNotes(e, callback) {
-    for (let i in this.notes) {
-      const frequency = this.getFrequency(e);
-      const volume = this.getVolume(e);
-      const volumeSetup = this.notes[i].volumeSetup;
-      volumeSetup.gain.value = volume;
-      const oscillator = this.notes[i].oscillator;
-      oscillator.frequency.value = frequency;
-      if (callback) callback(volume, frequency);
-    }
+    const frequency = this.getFrequency(e);
+    const volume = this.getVolume(e);
+    const volumeSetup = this.note.volumeSetup;
+    volumeSetup.gain.value = volume;
+    const oscillator = this.note.oscillator;
+    oscillator.frequency.value = frequency;
+    if (callback) callback(volume, frequency);
   },
 
   stop: function stopNotes() {
-    for (let i in this.notes) {
-      const oscillator = this.notes[i].oscillator;
-      oscillator.stop(this.audioContext.currentTime);
-    }
-    this.notes = [];
+    const oscillator = this.note.oscillator;
+    oscillator.stop(this.audioContext.currentTime);
+    this.note = null;
   },
 
   getFrequency: function getFrequency(e) {
