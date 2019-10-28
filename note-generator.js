@@ -76,13 +76,30 @@ const noteGenerator = {
   },
 
   copy: function copy() {
-    var copy = this.constructor();
-    for (var attribute in this) {
-      if (this.hasOwnProperty(attribute)) {
-        copy[attribute] = this[attribute];
+    return recursiveDeepCopy(this);
+    function recursiveDeepCopy(object) {
+      if (object === null || typeof object !== "object") {
+        return object;
+      } else if (Array.isArray(object)) {
+        const arrayCopy = [];
+        object.forEach(function(element) {
+          arrayCopy.push(recursiveDeepCopy(element));
+        });
+        return arrayCopy;
+      } else {
+        const objectCopy = {};
+        for (let property in object) {
+          if (object.hasOwnProperty(property)) {
+            if (property === 'audioCtx') {
+              objectCopy.audioCtx = new AudioContext();
+            } else {
+              objectCopy[property] = recursiveDeepCopy(object[property]);
+            }
+          }
+        }
+        return objectCopy;
       }
     }
-    return copy;
   },
 
 };
