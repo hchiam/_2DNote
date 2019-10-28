@@ -44,15 +44,16 @@ Here's an example of 2 notes playing simultaneously: [`example-two-notes.html`](
 
 ### `_2DNote.audioContext`:
 
-* This is the [AudioContext](https://developer.mozilla.org/en-US/docs/Web/API/AudioContext) used by the `_2DNote` instance.
+* This is the [AudioContext](https://developer.mozilla.org/en-US/docs/Web/API/AudioContext) used by the `_2DNote` instance to do the work of actually creating the note.
 
 ### `_2DNote.note`:
 
-* This is the note that the `_2DNote` instance can play.
+* This holds the information about the note (oscillator, volumeSetup) that the `_2DNote` instance can play.
 
 ### `_2DNote.play(e)`:
 
 * This plays a note based on the position of the element or mouse click event, which it figures out for you. (`e` is for event ***or*** element.)
+* **UX reminder:** You should let users know when the cursor moves outside the window by stopping the note from playing when that happens. This avoids having users click something outside the window without realizing it. To do that, try something like `<body onmouseleave="_2DNote.stop();">` on the `body` tag or the enclosing HTML element. See [`example-include.html`](https://github.com/hchiam/_2DNote/blob/master/example-include.html) or [`example-two-notes.html`](https://github.com/hchiam/_2DNote/blob/master/example-two-notes.html) for examples.
 
 ### `_2DNote.update(e)` or `_2DNote.update(e, callback)`:
 
