@@ -27,7 +27,7 @@ By including `note-generator.js`, you get an object `noteGenerator`, which you c
 For example:
 
 ```html
-<div onmousemove="noteGenerator.adjustNotes(event,colourSoundIcon);">...</div>
+<div onmousemove="noteGenerator.update(event,colourSoundIcon);">...</div>
 ```
 
 For a full working code example, see [`example-include.html`](https://github.com/hchiam/note-generator/blob/master/example-include.html)
