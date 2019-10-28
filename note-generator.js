@@ -95,8 +95,8 @@ const noteGenerator = {
     const minComfyFreq = 150;
     const maxComfyFreq = 400;
     const frequency = this.normalize(x, 
-                                0,screenWidth, 
-                                minComfyFreq,maxComfyFreq);
+                                     0,screenWidth, 
+                                     minComfyFreq,maxComfyFreq);
     return frequency;
   },
 
@@ -106,8 +106,8 @@ const noteGenerator = {
     const minComfyVolume = 0;
     const maxComfyVolume = 0.5;
     const volume = this.normalize(y, 
-                            0,screenHeight, 
-                            minComfyVolume,maxComfyVolume);
+                                  0,screenHeight, 
+                                  minComfyVolume,maxComfyVolume);
     return volume;
   },
 
