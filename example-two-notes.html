@@ -1,0 +1,146 @@
+<head>
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <style>
+    body {
+      background: #333;
+      color: snow;
+      width: 100vw;
+      height: 100vh;
+      font-family: avenir, arial, monospace;
+      text-align: center;
+    }
+
+    #main {
+      background: #5e4f40;
+      align-content: center;
+      border-radius: 1em;
+    }
+
+    #sound-icon {
+      color: #335;
+      font-size: 10em;
+      position: fixed;
+      left: calc(50% - 0.5em);
+      top: calc(50% - 0.4em);
+    }
+
+    footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      padding-bottom: 1em;
+    }
+
+    a {
+      color: snow;
+    }
+
+    a:hover {
+      color: lime;
+    }
+
+    .small-text {
+      font-size: xx-small;
+    }
+
+    #other-note {
+      position: absolute;
+      top: 140px;
+      left: 100px;
+      transition: 0.1s;
+    }
+  </style>
+</head>
+<!-- USE noteGenerator! -->
+<body onclick="playOrStop(event)" onmousemove="instructToClickToStop();noteGenerator.adjustNotes(event,colourSoundIcon);">
+  <button id="other-note">Other note</button>
+  <div id="main" role="main">
+    <h1 id="audio-reminder" aria-hidden="true">Make sure audio is on</h1>
+    <p id="instruction" aria-live="polite"></p>
+  </div>
+  <i id="sound-icon" class='fas fa-music'></i>
+  <footer>
+    <p class="small-text">Potential use: 2D games that people can play together, regardless of vision capabilities?</p>
+  </footer>
+
+  <!-- INCLUDE noteGenerator! -->
+  <script src="note-generator.js"></script>
+
+  <!-- USE noteGenerator! -->
+  <script>
+    setTimeout(function(){ 
+      document.getElementById('instruction').innerHTML = 'Click anywhere to start';
+    }, 1000);
+
+    const otherNoteGenerator = noteGenerator.copy();
+    setInterval(function() {
+      const element = document.getElementById('other-note');
+      const h = document.documentElement.clientHeight;
+      const w = document.documentElement.clientWidth;
+      element.style.left = Math.random() * (w - element.offsetWidth);
+      element.style.top = Math.random() * (h/5 - element.offsetHeight);
+      otherNoteGenerator.adjustNotes(element);
+    }, 1000);
+
+    let on = false;
+    function playOrStop(e) {
+      if (on) {
+        on = false;
+        noteGenerator.stopNotes();
+        otherNoteGenerator.stopNotes();
+        instructToClickToStart();
+      } else {
+        on = true;
+        hideAudioReminder();
+        instructToMoveMouse();
+        noteGenerator.playNote(e);
+        otherNoteGenerator.playNote(document.getElementById('other-note'));
+      }
+      toggleSoundIcon();
+    }
+
+    function instructToMoveMouse() {
+      document.getElementById('instruction').innerHTML = 'Move mouse to play with volume and pitch';
+    }
+
+    function hideAudioReminder() {
+      document.getElementById('audio-reminder').style.display = 'none';
+    }
+
+    function instructToClickToStart() {
+      document.getElementById('instruction').innerHTML = 'Click anywhere to start';
+    }
+
+    function instructToClickToStop() {
+      if (on) {
+        document.getElementById('instruction').innerHTML = 'Move mouse to play with volume and pitch <br/><span style="color: lime;">Click anywhere to stop</span>';
+      }
+    }
+
+    function toggleSoundIcon() {
+      if (on) {
+        document.getElementById('sound-icon').style.visibility = 'visible';
+      } else {
+        document.getElementById('sound-icon').style.visibility = 'hidden';
+      }
+    }
+
+    function colourSoundIcon(volume, frequency) {
+      const minComfyVolume = 0;
+      const maxComfyVolume = 0.5;
+      let volumeNum = noteGenerator.normalize(volume, 
+                                              minComfyVolume,maxComfyVolume, 
+                                              0,100);
+      volumeNum = Math.round(volumeNum);
+      const minComfyFreq = 150;
+      const maxComfyFreq = 400;
+      let frequencyNum = noteGenerator.normalize(frequency, 
+                                                 minComfyFreq,maxComfyFreq, 
+                                                 0,359);
+      frequencyNum = Math.round(frequencyNum);
+      let output = 'hsl(' + String(frequencyNum) + ',' + String(volumeNum) + '%, 50%)';
+      document.getElementById('sound-icon').style.color = output;
+    }
+  </script>
+</body>
