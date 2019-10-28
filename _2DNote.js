@@ -115,6 +115,10 @@ const _2DNote = {
   },
 
   copy: function () {
+    /**
+     * If you want to play multiple notes at the same time, 
+     * you can use this to create more instances.
+     */
     return recursiveDeepCopy(this);
     function recursiveDeepCopy(object) {
       if (object === null || typeof object !== "object") {
