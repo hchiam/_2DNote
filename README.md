@@ -27,3 +27,5 @@ For example:
 ```
 
 For a full working code example, see [`example-include.html`](https://github.com/hchiam/note-generator/blob/master/example-include.html)
+
+Here's an example of 2 notes playing simultaneously: [`example-two-notes.html`](https://github.com/hchiam/note-generator/blob/master/example-two-notes.html)
