@@ -22,7 +22,6 @@
       position: fixed;
       left: calc(50% - 0.5em);
       top: calc(50% - 0.4em);
-      transition: 0.1s;
     }
 
     footer {
@@ -190,7 +189,6 @@
                                    0,359);
       frequencyNum = Math.round(frequencyNum);
       let output = 'hsl(' + String(frequencyNum) + ',' + String(volumeNum) + '%, 50%)';
-      console.log(output)
       document.getElementById('sound-icon').style.color = output;
     }
   </script>
