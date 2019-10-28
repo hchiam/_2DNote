@@ -2,30 +2,30 @@
 
 const noteGenerator = {
 
-  audioCtx: new AudioContext(),
+  audioContext: new AudioContext(),
   // multiple oscillators can use this one context
   notes: [],
 
-  playNote: function playNote(e) {
+  play: function playNote(e) {
     // example usage: <body onmousemove="noteGenerator.playNote(event)" style="width: 100vw; height: 100vh;"></body>
     // can play another note simultaneously with another playNote(e) call
     const frequency = this.getFrequency(e);
     const volume = this.getVolume(e);
-    const volumeSetup = this.audioCtx.createGain();
-    volumeSetup.connect(this.audioCtx.destination);
+    const volumeSetup = this.audioContext.createGain();
+    volumeSetup.connect(this.audioContext.destination);
     volumeSetup.gain.value = volume;
-    const oscillator = this.audioCtx.createOscillator();
+    const oscillator = this.audioContext.createOscillator();
     oscillator.type = 'sine';
     oscillator.frequency.value = frequency;
     oscillator.connect(volumeSetup);
-    // instead of oscillator.connect(this.audioCtx.destination);
+    // instead of oscillator.connect(this.audioContext.destination);
     oscillator.start();
     // const delayThatAvoidsCrazyReverbs = 1;
-    // oscillator.stop(this.audioCtx.currentTime + delayThatAvoidsCrazyReverbs);
+    // oscillator.stop(this.audioContext.currentTime + delayThatAvoidsCrazyReverbs);
     this.notes.push({oscillator, volumeSetup});
   },
 
-  adjustNotes: function adjustNotes(e, callback) {
+  update: function adjustNotes(e, callback) {
     for (let i in this.notes) {
       const frequency = this.getFrequency(e);
       const volume = this.getVolume(e);
@@ -37,10 +37,10 @@ const noteGenerator = {
     }
   },
 
-  stopNotes: function stopNotes() {
+  stop: function stopNotes() {
     for (let i in this.notes) {
       const oscillator = this.notes[i].oscillator;
-      oscillator.stop(this.audioCtx.currentTime);
+      oscillator.stop(this.audioContext.currentTime);
     }
     this.notes = [];
   },
@@ -133,8 +133,8 @@ const noteGenerator = {
         const objectCopy = {};
         for (let property in object) {
           if (object.hasOwnProperty(property)) {
-            if (property === 'audioCtx') {
-              objectCopy.audioCtx = new AudioContext();
+            if (property === 'audioContext') {
+              objectCopy.audioContext = new AudioContext();
             } else {
               objectCopy[property] = recursiveDeepCopy(object[property]);
             }

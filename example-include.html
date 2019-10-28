@@ -42,7 +42,7 @@
   </style>
 </head>
 <!-- USE noteGenerator! -->
-<body onclick="playOrStop(event)" onmousemove="instructToClickToStop();noteGenerator.adjustNotes(event,colourSoundIcon);">
+<body onclick="playOrStop(event)" onmousemove="instructToClickToStop();noteGenerator.update(event,colourSoundIcon);">
   <div id="main" role="main">
     <h1 id="audio-reminder" aria-hidden="true">Make sure audio is on</h1>
     <p id="instruction" aria-live="polite"></p>
@@ -63,13 +63,13 @@
     function playOrStop(e) {
       if (on) {
         on = false;
-        noteGenerator.stopNotes();
+        noteGenerator.stop();
         instructToClickToStart();
       } else {
         on = true;
         hideAudioReminder();
         instructToMoveMouse();
-        noteGenerator.playNote(e);
+        noteGenerator.play(e);
       }
       toggleSoundIcon();
     }
