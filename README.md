@@ -75,10 +75,12 @@ Here's an example of 2 notes playing simultaneously: [`example-two-notes.html`](
 ### `_2DNote.getFrequencyFromMouseX(event)`:
 
 * This returns the note frequency based on the x coordinate of the mouse click event.
+* It's recommended that you use `_2DNote.getFrequency(e)` instead.
 
 ### `_2DNote.getVolumeFromMouseY(event)`:
 
 * This returns the note volume based on the y coordinate of the mouse click event.
+* It's recommended that you use `_2DNote.getVolume(e)` instead.
 
 ### `_2DNote.getFrequencyFromX(x)`:
 
@@ -88,9 +90,9 @@ Here's an example of 2 notes playing simultaneously: [`example-two-notes.html`](
 
 * This returns the note volume based on the given y coordinate.
 
-### `_2DNote.normalize(value, inMin,inMax, outMin,outMax)`:
+### `_2DNote.normalize(value, inputRange, outputRange)`:
 
-* This maps the value found within the input range (`inMin` to `inMax`) to be in the chosen output range (`outMin` to `outMax`). It returns the re-mapped value.
+* This maps the value found within the input range (`[inputRangeMin, inputRangeMax]`) to be in the chosen output range (`[outputRangeMin, outputRangeMax]`). It returns the re-mapped value.
 
 ### `_2DNote.copy()`:
 

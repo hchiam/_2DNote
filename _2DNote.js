@@ -65,53 +65,37 @@ const _2DNote = {
   },
 
   getFrequencyFromMouseX: function (event) {
-    const screenWidth = event.currentTarget.offsetWidth;
     const x = event.clientX;
-    const minComfyFreq = 150;
-    const maxComfyFreq = 400;
-    const frequency = this.normalize(x, 
-                                     0,screenWidth, 
-                                     minComfyFreq,maxComfyFreq);
+    const frequency = this.getFrequencyFromX(x);
     return frequency;
   },
 
   getVolumeFromMouseY: function (event) {
-    // technically getting gain (which ranges 0 to 1)
-    const screenHeight = event.currentTarget.offsetHeight;
     const y = event.clientY;
-    const minComfyVolume = 0;
-    const maxComfyVolume = 0.5;
-    const volume = this.normalize(y, 
-                                  0,screenHeight, 
-                                  minComfyVolume,maxComfyVolume);
+    const volume = this.getVolumeFromY(y);
     return volume;
   },
 
   getFrequencyFromX: function (x) {
     const screenWidth = document.documentElement.clientWidth;
-    const minComfyFreq = 150;
-    const maxComfyFreq = 400;
-    const frequency = this.normalize(x, 
-                                     0,screenWidth, 
-                                     minComfyFreq,maxComfyFreq);
+    const inputRange = [0, screenWidth];
+    const comfyFrequencyRange = [150, 400];
+    const frequency = this.normalize(x, inputRange, comfyFrequencyRange);
     return frequency;
   },
 
   getVolumeFromY: function (y) {
-    // technically getting gain (which ranges 0 to 1)
     const screenHeight = document.documentElement.clientHeight;
-    const minComfyVolume = 0;
-    const maxComfyVolume = 0.5;
-    const volume = this.normalize(y, 
-                                  0,screenHeight, 
-                                  minComfyVolume,maxComfyVolume);
+    const inputRange = [0, screenHeight];
+    const comfyVolumeRange = [0, 0.5]; // technically getting gain (which ranges 0 to 1)
+    const volume = this.normalize(y, inputRange, comfyVolumeRange);
     return volume;
   },
 
-  normalize: function (value, inMin,inMax, outMin,outMax) {
-    const inputBias = value - inMin;
-    const ratioAdjustment = (outMax - outMin) / (inMax - inMin);
-    const outputBias = outMin;
+  normalize: function (value, [inputRangeMin,inputRangeMax], [outputRangeMin,outputRangeMax]) {
+    const inputBias = value - inputRangeMin;
+    const ratioAdjustment = (outputRangeMax - outputRangeMin) / (inputRangeMax - inputRangeMin);
+    const outputBias = outputRangeMin;
     return inputBias * ratioAdjustment + outputBias;
   },
 
