@@ -41,18 +41,18 @@
     }
   </style>
 </head>
-<!-- USE noteGenerator! -->
-<body onclick="playOrStop(event)" onmousemove="instructToClickToStop();noteGenerator.update(event,colourSoundIcon);">
+<!-- USE _2DNote! -->
+<body onclick="playOrStop(event)" onmousemove="instructToClickToStop();_2DNote.update(event,colourSoundIcon);">
   <div id="main" role="main">
     <h1 id="audio-reminder" aria-hidden="true">Make sure audio is on</h1>
     <p id="instruction" aria-live="polite"></p>
   </div>
   <i id="sound-icon" class='fas fa-music'></i>
 
-  <!-- INCLUDE noteGenerator! -->
-  <script src="https://cdn.jsdelivr.net/gh/hchiam/note-generator@latest/note-generator.js"></script>
+  <!-- INCLUDE _2DNote! -->
+  <script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@latest/_2DNote.js"></script>
 
-  <!-- USE noteGenerator! -->
+  <!-- USE _2DNote! -->
   <script>
     setTimeout(function(){ 
       document.getElementById('instruction').innerHTML = 'Click anywhere to start';
@@ -63,13 +63,13 @@
     function playOrStop(e) {
       if (on) {
         on = false;
-        noteGenerator.stop();
+        _2DNote.stop();
         instructToClickToStart();
       } else {
         on = true;
         hideAudioReminder();
         instructToMoveMouse();
-        noteGenerator.play(e);
+        _2DNote.play(e);
       }
       toggleSoundIcon();
     }
@@ -103,13 +103,13 @@
     function colourSoundIcon(volume, frequency) {
       const minComfyVolume = 0;
       const maxComfyVolume = 0.5;
-      let volumeNum = noteGenerator.normalize(volume, 
+      let volumeNum = _2DNote.normalize(volume, 
                                               minComfyVolume,maxComfyVolume, 
                                               0,100);
       volumeNum = Math.round(volumeNum);
       const minComfyFreq = 150;
       const maxComfyFreq = 400;
-      let frequencyNum = noteGenerator.normalize(frequency, 
+      let frequencyNum = _2DNote.normalize(frequency, 
                                                  minComfyFreq,maxComfyFreq, 
                                                  0,359);
       frequencyNum = Math.round(frequencyNum);

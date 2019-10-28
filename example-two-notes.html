@@ -51,8 +51,8 @@
     }
   </style>
 </head>
-<!-- USE noteGenerator! -->
-<body onclick="playOrStop(event)" onmousemove="instructToClickToStop();noteGenerator.update(event,colourSoundIcon);">
+<!-- USE _2DNote! -->
+<body onclick="playOrStop(event)" onmousemove="instructToClickToStop();_2DNote.update(event,colourSoundIcon);">
   <button id="other-note">Other note</button>
   <div id="main" role="main">
     <h1 id="audio-reminder" aria-hidden="true">Make sure audio is on</h1>
@@ -60,10 +60,10 @@
   </div>
   <i id="sound-icon" class='fas fa-music'></i>
 
-  <!-- INCLUDE noteGenerator! -->
-  <script src="note-generator.js"></script>
+  <!-- INCLUDE _2DNote! -->
+  <script src="_2DNote.js"></script>
 
-  <!-- USE noteGenerator! -->
+  <!-- USE _2DNote! -->
   <script>
     setTimeout(function(){ 
       document.getElementById('instruction').innerHTML = 'Click anywhere to start';
@@ -71,7 +71,7 @@
 
     let on = false;
 
-    const otherNoteGenerator = noteGenerator.copy();
+    const other_2DNote = _2DNote.copy();
     setInterval(function() {
       if (!on) return;
       const element = document.getElementById('other-note');
@@ -79,21 +79,21 @@
       const w = document.documentElement.clientWidth;
       element.style.left = Math.random() * (w - element.offsetWidth);
       element.style.top = Math.random() * (h/2 - element.offsetHeight);
-      otherNoteGenerator.update(element);
+      other_2DNote.update(element);
     }, 400);
 
     function playOrStop(e) {
       if (on) {
         on = false;
-        noteGenerator.stop();
-        otherNoteGenerator.stop();
+        _2DNote.stop();
+        other_2DNote.stop();
         instructToClickToStart();
       } else {
         on = true;
         hideAudioReminder();
         instructToMoveMouse();
-        noteGenerator.play(e);
-        otherNoteGenerator.play(document.getElementById('other-note'));
+        _2DNote.play(e);
+        other_2DNote.play(document.getElementById('other-note'));
       }
       toggleSoundIcon();
     }
@@ -127,13 +127,13 @@
     function colourSoundIcon(volume, frequency) {
       const minComfyVolume = 0;
       const maxComfyVolume = 0.5;
-      let volumeNum = noteGenerator.normalize(volume, 
+      let volumeNum = _2DNote.normalize(volume, 
                                               minComfyVolume,maxComfyVolume, 
                                               0,100);
       volumeNum = Math.round(volumeNum);
       const minComfyFreq = 150;
       const maxComfyFreq = 400;
-      let frequencyNum = noteGenerator.normalize(frequency, 
+      let frequencyNum = _2DNote.normalize(frequency, 
                                                  minComfyFreq,maxComfyFreq, 
                                                  0,359);
       frequencyNum = Math.round(frequencyNum);

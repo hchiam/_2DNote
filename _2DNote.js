@@ -1,13 +1,13 @@
-// example usage: noteGenerator.play(...) or noteGenerator.update(...)
+// example usage: _2DNote.play(...) or _2DNote.update(...)
 
-const noteGenerator = {
+const _2DNote = {
 
   audioContext: new AudioContext(),
   // multiple oscillators can use this one context
   note: null,
 
   play: function (e) { // e = event or element
-    // example usage: <body onmousemove="noteGenerator.play(event)" style="width: 100vw; height: 100vh;"></body>
+    // example usage: <body onmousemove="_2DNote.play(event)" style="width: 100vw; height: 100vh;"></body>
     // can play another note simultaneously with another play(e) call
     const frequency = this.getFrequency(e);
     const volume = this.getVolume(e);

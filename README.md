@@ -1,6 +1,6 @@
 # Note Generator with Basic "Vanilla" JavaScript
 
-[![HitCount](http://hits.dwyl.com/hchiam/note-generator.svg)](http://hits.dwyl.com/hchiam/note-generator)
+[![HitCount](http://hits.dwyl.com/hchiam/_2DNote.svg)](http://hits.dwyl.com/hchiam/_2DNote)
 
 **Potential use:** 2D games that people can play together, regardless of vision capabilities? Enable hearing what you're drawing? Hear the contours of someone else's sketch? Audio version of a signature?
 
@@ -19,17 +19,17 @@ https://codepen.io/hchiam/full/eYYdVeX
 ***Yes:***
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/hchiam/note-generator@latest/note-generator.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@latest/_2DNote.js"></script>
 ```
 
-By including `note-generator.js`, you get an object `noteGenerator`, which you can use in your HTML or JS code.
+By including `_2DNote.js`, you get an object `_2DNote`, which you can use in your HTML or JS code.
 
 For example:
 
 ```html
-<div onmousemove="noteGenerator.update(event,colourSoundIcon);">...</div>
+<div onmousemove="_2DNote.update(event,colourSoundIcon);">...</div>
 ```
 
-For a full working code example, see [`example-include.html`](https://github.com/hchiam/note-generator/blob/master/example-include.html)
+For a full working code example, see [`example-include.html`](https://github.com/hchiam/_2DNote/blob/master/example-include.html)
 
-Here's an example of 2 notes playing simultaneously: [`example-two-notes.html`](https://github.com/hchiam/note-generator/blob/master/example-two-notes.html)
+Here's an example of 2 notes playing simultaneously: [`example-two-notes.html`](https://github.com/hchiam/_2DNote/blob/master/example-two-notes.html)
