@@ -27,8 +27,8 @@ const noteGenerator = {
 
   adjustNotes: function adjustNotes(e, callback) {
     for (let i in this.notes) {
-      const frequency = this.getFrequencyFromMouseX(e);
-      const volume = this.getVolumeFromMouseY(e);
+      const frequency = this.getFrequency(e);
+      const volume = this.getVolume(e);
       const volumeSetup = this.notes[i].volumeSetup;
       volumeSetup.gain.value = volume;
       const oscillator = this.notes[i].oscillator;
