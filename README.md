@@ -15,7 +15,7 @@ https://codepen.io/hchiam/full/eYYdVeX
 ***Yes:***
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/hchiam/note-generator@master/note-generator.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/hchiam/note-generator@latest/note-generator.js"></script>
 ```
 
 By including `note-generator.js`, you get an object `noteGenerator`, which you can use in your HTML or JS code.
