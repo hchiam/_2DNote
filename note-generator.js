@@ -1,10 +1,13 @@
+// example usage: noteGenerator.playNote(...) or noteGenerator.adjustNotes(...)
+
 const noteGenerator = {
+
   audioCtx: new AudioContext(),
   // multiple oscillators can use this one context
   notes: [],
 
   playNote: function playNote(e) {
-    // example usage: <body onmousemove="playNote(event)" style="width: 100vw; height: 100vh;"></body>
+    // example usage: <body onmousemove="noteGenerator.playNote(event)" style="width: 100vw; height: 100vh;"></body>
     // can play another note simultaneously with another playNote(e) call
     const frequency = this.getFrequencyFromX(e);
     const volume = this.getVolumeFromY(e);
@@ -15,10 +18,10 @@ const noteGenerator = {
     oscillator.type = 'sine';
     oscillator.frequency.value = frequency;
     oscillator.connect(volumeSetup);
-    // instead of oscillator.connect(audioCtx.destination);
+    // instead of oscillator.connect(this.audioCtx.destination);
     oscillator.start();
     // const delayThatAvoidsCrazyReverbs = 1;
-    // oscillator.stop(audioCtx.currentTime + delayThatAvoidsCrazyReverbs);
+    // oscillator.stop(this.audioCtx.currentTime + delayThatAvoidsCrazyReverbs);
     this.notes.push({oscillator, volumeSetup});
   },
 
@@ -71,4 +74,5 @@ const noteGenerator = {
     const outputBias = outMin;
     return inputBias * ratioAdjustment + outputBias;
   }
+
 };
