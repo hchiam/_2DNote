@@ -73,6 +73,6 @@ const noteGenerator = {
     const ratioAdjustment = (outMax - outMin) / (inMax - inMin);
     const outputBias = outMin;
     return inputBias * ratioAdjustment + outputBias;
-  }
+  },
 
 };
