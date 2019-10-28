@@ -1,4 +1,4 @@
-// example usage: noteGenerator.playNote(...) or noteGenerator.adjustNotes(...)
+// example usage: noteGenerator.play(...) or noteGenerator.update(...)
 
 const noteGenerator = {
 
@@ -6,9 +6,9 @@ const noteGenerator = {
   // multiple oscillators can use this one context
   note: null,
 
-  play: function playNote(e) {
-    // example usage: <body onmousemove="noteGenerator.playNote(event)" style="width: 100vw; height: 100vh;"></body>
-    // can play another note simultaneously with another playNote(e) call
+  play: function (e) { // e = event or element
+    // example usage: <body onmousemove="noteGenerator.play(event)" style="width: 100vw; height: 100vh;"></body>
+    // can play another note simultaneously with another play(e) call
     const frequency = this.getFrequency(e);
     const volume = this.getVolume(e);
     const volumeSetup = this.audioContext.createGain();
@@ -25,7 +25,7 @@ const noteGenerator = {
     this.note = {oscillator, volumeSetup};
   },
 
-  update: function adjustNotes(e, callback) {
+  update: function (e, callback) { // e = event or element
     const frequency = this.getFrequency(e);
     const volume = this.getVolume(e);
     const volumeSetup = this.note.volumeSetup;
@@ -35,13 +35,13 @@ const noteGenerator = {
     if (callback) callback(volume, frequency);
   },
 
-  stop: function stopNotes() {
+  stop: function () {
     const oscillator = this.note.oscillator;
     oscillator.stop(this.audioContext.currentTime);
     this.note = null;
   },
 
-  getFrequency: function getFrequency(e) {
+  getFrequency: function (e) { // e = event or element
     if (e.currentTarget && e.clientX && e.clientY) {
       // event
       return this.getFrequencyFromMouseX(e);
@@ -52,7 +52,7 @@ const noteGenerator = {
     }
   },
 
-  getVolume: function getVolume(e) {
+  getVolume: function (e) { // e = event or element
     if (e.currentTarget && e.clientX && e.clientY) {
       // event
       return this.getVolumeFromMouseY(e);
@@ -63,30 +63,30 @@ const noteGenerator = {
     }
   },
 
-  getFrequencyFromMouseX: function getFrequencyFromMouseX(e) {
-    const screenWidth = e.currentTarget.offsetWidth;
-    const x = e.clientX;
+  getFrequencyFromMouseX: function (event) {
+    const screenWidth = event.currentTarget.offsetWidth;
+    const x = event.clientX;
     const minComfyFreq = 150;
     const maxComfyFreq = 400;
     const frequency = this.normalize(x, 
-                                0,screenWidth, 
-                                minComfyFreq,maxComfyFreq);
+                                     0,screenWidth, 
+                                     minComfyFreq,maxComfyFreq);
     return frequency;
   },
 
-  getVolumeFromMouseY: function getVolumeFromMouseY(e) {
+  getVolumeFromMouseY: function (event) {
     // technically getting gain (which ranges 0 to 1)
-    const screenHeight = e.currentTarget.offsetHeight;
-    const y = e.clientY;
+    const screenHeight = event.currentTarget.offsetHeight;
+    const y = event.clientY;
     const minComfyVolume = 0;
     const maxComfyVolume = 0.5;
     const volume = this.normalize(y, 
-                            0,screenHeight, 
-                            minComfyVolume,maxComfyVolume);
+                                  0,screenHeight, 
+                                  minComfyVolume,maxComfyVolume);
     return volume;
   },
 
-  getFrequencyFromX: function getFrequencyFromX(x) {
+  getFrequencyFromX: function (x) {
     const screenWidth = document.documentElement.clientWidth;
     const minComfyFreq = 150;
     const maxComfyFreq = 400;
@@ -96,7 +96,7 @@ const noteGenerator = {
     return frequency;
   },
 
-  getVolumeFromY: function getVolumeFromY(y) {
+  getVolumeFromY: function (y) {
     // technically getting gain (which ranges 0 to 1)
     const screenHeight = document.documentElement.clientHeight;
     const minComfyVolume = 0;
@@ -107,14 +107,14 @@ const noteGenerator = {
     return volume;
   },
 
-  normalize: function normalize(value, inMin,inMax, outMin,outMax) {
+  normalize: function (value, inMin,inMax, outMin,outMax) {
     const inputBias = value - inMin;
     const ratioAdjustment = (outMax - outMin) / (inMax - inMin);
     const outputBias = outMin;
     return inputBias * ratioAdjustment + outputBias;
   },
 
-  copy: function copy() {
+  copy: function () {
     return recursiveDeepCopy(this);
     function recursiveDeepCopy(object) {
       if (object === null || typeof object !== "object") {
