@@ -8,7 +8,7 @@ const _2DNote = {
 
   play: function (e) { // e = event or element
     // example usage: <body onmousemove="_2DNote.play(event)" style="width: 100vw; height: 100vh;"></body>
-    // can play another note simultaneously with another play(e) call
+    this.stop();
     const frequency = this.getFrequency(e);
     const volume = this.getVolume(e);
     const volumeSetup = this.audioContext.createGain();
@@ -36,6 +36,7 @@ const _2DNote = {
   },
 
   stop: function () {
+    if (this.note === null) return;
     const oscillator = this.note.oscillator;
     oscillator.stop(this.audioContext.currentTime);
     this.note = null;
