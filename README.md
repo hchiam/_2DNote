@@ -52,11 +52,11 @@ Here's an example of 2 notes playing simultaneously: [`example-two-notes.html`](
 
 ### `_2DNote.play(e)`:
 
-* This plays a note based on the position of the element or mouse click event. (`e` is for event ***or*** element.)
+* This plays a note based on the position of the element or mouse click event, which it figures out for you. (`e` is for event ***or*** element.)
 
 ### `_2DNote.update(e)` or `_2DNote.update(e, callback)`:
 
-* This causes the note that the `_2DNote` instance is playing to update to the current position of the element or mouse click event. (`e` is for event ***or*** element.)
+* This causes the note that the `_2DNote` instance is playing to update to the current position of the element or mouse click event, which it figures out for you. (`e` is for event ***or*** element.)
 * `callback` is an optional parameter, and is a function that will be run from within `update()` with this signature: `callback(volume, frequency)`. See full details in [`_2DNote.js`](https://github.com/hchiam/_2DNote/blob/master/_2DNote.js).
 
 ### `_2DNote.stop()`:
@@ -65,11 +65,11 @@ Here's an example of 2 notes playing simultaneously: [`example-two-notes.html`](
 
 ### `_2DNote.getFrequency(e)`:
 
-* This returns the note frequency based on the x coordinate of the element ***or*** mouse click event. (`e` is for event ***or*** element.)
+* This returns the note frequency based on the x coordinate of the element ***or*** mouse click event, which it figures out for you. (`e` is for event ***or*** element.)
 
 ### `_2DNote.getVolume(e)`:
 
-* This returns the note volume based on the y coordinate of the element ***or*** mouse click event. (`e` is for event ***or*** element.)
+* This returns the note volume based on the y coordinate of the element ***or*** mouse click event, which it figures out for you. (`e` is for event ***or*** element.)
 
 ### `_2DNote.getFrequencyFromMouseX(event)`:
 
