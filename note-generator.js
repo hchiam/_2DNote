@@ -9,8 +9,8 @@ const noteGenerator = {
   playNote: function playNote(e) {
     // example usage: <body onmousemove="noteGenerator.playNote(event)" style="width: 100vw; height: 100vh;"></body>
     // can play another note simultaneously with another playNote(e) call
-    const frequency = this.getFrequencyFromX(e);
-    const volume = this.getVolumeFromY(e);
+    const frequency = this.getFrequencyFromMouseX(e);
+    const volume = this.getVolumeFromMouseY(e);
     const volumeSetup = this.audioCtx.createGain();
     volumeSetup.connect(this.audioCtx.destination);
     volumeSetup.gain.value = volume;
@@ -27,13 +27,13 @@ const noteGenerator = {
 
   adjustNotes: function adjustNotes(e, callback) {
     for (let i in this.notes) {
-      const frequency = this.getFrequencyFromX(e);
-      const volume = this.getVolumeFromY(e);
+      const frequency = this.getFrequencyFromMouseX(e);
+      const volume = this.getVolumeFromMouseY(e);
       const volumeSetup = this.notes[i].volumeSetup;
       volumeSetup.gain.value = volume;
       const oscillator = this.notes[i].oscillator;
       oscillator.frequency.value = frequency;
-      callback(volume, frequency);
+      if (callback) callback(volume, frequency);
     }
   },
 
@@ -45,7 +45,7 @@ const noteGenerator = {
     this.notes = [];
   },
 
-  getFrequencyFromX: function getFrequencyFromX(e) {
+  getFrequencyFromMouseX: function getFrequencyFromMouseX(e) {
     const screenWidth = e.currentTarget.offsetWidth;
     const x = e.clientX;
     const minComfyFreq = 150;
@@ -56,10 +56,29 @@ const noteGenerator = {
     return frequency;
   },
 
-  getVolumeFromY: function getVolumeFromY(e) {
+  getVolumeFromMouseY: function getVolumeFromMouseY(e) {
     // technically getting gain (which ranges 0 to 1)
     const screenHeight = e.currentTarget.offsetHeight;
     const y = e.clientY;
+    const minComfyVolume = 0;
+    const maxComfyVolume = 0.5;
+    const volume = this.normalize(y, 
+                            0,screenHeight, 
+                            minComfyVolume,maxComfyVolume);
+    return volume;
+  },
+
+  getFrequencyFromX: function getFrequencyFromX(x, screenWidth) {
+    const minComfyFreq = 150;
+    const maxComfyFreq = 400;
+    const frequency = this.normalize(x, 
+                                0,screenWidth, 
+                                minComfyFreq,maxComfyFreq);
+    return frequency;
+  },
+
+  getVolumeFromY: function getVolumeFromY(y, screenHeight) {
+    // technically getting gain (which ranges 0 to 1)
     const minComfyVolume = 0;
     const maxComfyVolume = 0.5;
     const volume = this.normalize(y, 
