@@ -25,3 +25,5 @@ For example:
 ```html
 <div onmousemove="noteGenerator.adjustNotes(event,colourSoundIcon);">...</div>
 ```
+
+For a full working code example, see [`example-include.html`](https://github.com/hchiam/note-generator/blob/master/example-include.html)
