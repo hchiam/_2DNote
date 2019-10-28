@@ -111,14 +111,14 @@
       const minComfyVolume = 0;
       const maxComfyVolume = 0.5;
       let volumeNum = noteGenerator.normalize(volume, 
-                                minComfyVolume,maxComfyVolume, 
-                                0,100);
+                                              minComfyVolume,maxComfyVolume, 
+                                              0,100);
       volumeNum = Math.round(volumeNum);
       const minComfyFreq = 150;
       const maxComfyFreq = 400;
       let frequencyNum = noteGenerator.normalize(frequency, 
-                                  minComfyFreq,maxComfyFreq, 
-                                  0,359);
+                                                 minComfyFreq,maxComfyFreq, 
+                                                 0,359);
       frequencyNum = Math.round(frequencyNum);
       let output = 'hsl(' + String(frequencyNum) + ',' + String(volumeNum) + '%, 50%)';
       document.getElementById('sound-icon').style.color = output;
