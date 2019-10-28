@@ -9,8 +9,8 @@ const noteGenerator = {
   playNote: function playNote(e) {
     // example usage: <body onmousemove="noteGenerator.playNote(event)" style="width: 100vw; height: 100vh;"></body>
     // can play another note simultaneously with another playNote(e) call
-    const frequency = this.getFrequencyFromMouseX(e);
-    const volume = this.getVolumeFromMouseY(e);
+    const frequency = this.getFrequency(e);
+    const volume = this.getVolume(e);
     const volumeSetup = this.audioCtx.createGain();
     volumeSetup.connect(this.audioCtx.destination);
     volumeSetup.gain.value = volume;
@@ -45,6 +45,28 @@ const noteGenerator = {
     this.notes = [];
   },
 
+  getFrequency: function getFrequency(e) {
+    if (e.currentTarget && e.clientX && e.clientY) {
+      // event
+      return this.getFrequencyFromMouseX(e);
+    } else {
+      // element
+      const x = e.offsetLeft;
+      return this.getFrequencyFromX(x);
+    }
+  },
+
+  getVolume: function getVolume(e) {
+    if (e.currentTarget && e.clientX && e.clientY) {
+      // event
+      return this.getVolumeFromMouseY(e);
+    } else {
+      // element
+      const y = e.offsetTop;
+      return this.getVolumeFromY(y);
+    }
+  },
+
   getFrequencyFromMouseX: function getFrequencyFromMouseX(e) {
     const screenWidth = e.currentTarget.offsetWidth;
     const x = e.clientX;
@@ -68,7 +90,8 @@ const noteGenerator = {
     return volume;
   },
 
-  getFrequencyFromX: function getFrequencyFromX(x, screenWidth) {
+  getFrequencyFromX: function getFrequencyFromX(x) {
+    const screenWidth = document.documentElement.clientWidth;
     const minComfyFreq = 150;
     const maxComfyFreq = 400;
     const frequency = this.normalize(x, 
@@ -77,8 +100,9 @@ const noteGenerator = {
     return frequency;
   },
 
-  getVolumeFromY: function getVolumeFromY(y, screenHeight) {
+  getVolumeFromY: function getVolumeFromY(y) {
     // technically getting gain (which ranges 0 to 1)
+    const screenHeight = document.documentElement.clientHeight;
     const minComfyVolume = 0;
     const maxComfyVolume = 0.5;
     const volume = this.normalize(y, 
