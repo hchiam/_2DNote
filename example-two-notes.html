@@ -46,9 +46,12 @@
 
     #other-note {
       position: absolute;
-      top: 140px;
-      left: 100px;
+      top: 1em;
+      left: 1em;
+      z-index: 1;
       transition: 0.1s;
+      padding: 10px;
+      border-radius: 10px;
     }
   </style>
 </head>
@@ -73,17 +76,19 @@
       document.getElementById('instruction').innerHTML = 'Click anywhere to start';
     }, 1000);
 
+    let on = false;
+
     const otherNoteGenerator = noteGenerator.copy();
     setInterval(function() {
+      if (!on) return;
       const element = document.getElementById('other-note');
       const h = document.documentElement.clientHeight;
       const w = document.documentElement.clientWidth;
       element.style.left = Math.random() * (w - element.offsetWidth);
-      element.style.top = Math.random() * (h/5 - element.offsetHeight);
+      element.style.top = Math.random() * (h/2 - element.offsetHeight);
       otherNoteGenerator.adjustNotes(element);
-    }, 1000);
+    }, 100);
 
-    let on = false;
     function playOrStop(e) {
       if (on) {
         on = false;
