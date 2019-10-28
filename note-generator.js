@@ -75,4 +75,14 @@ const noteGenerator = {
     return inputBias * ratioAdjustment + outputBias;
   },
 
+  copy: function copy() {
+    var copy = this.constructor();
+    for (var attribute in this) {
+      if (this.hasOwnProperty(attribute)) {
+        copy[attribute] = this[attribute];
+      }
+    }
+    return copy;
+  },
+
 };
