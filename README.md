@@ -2,7 +2,7 @@
 
 [![HitCount](http://hits.dwyl.com/hchiam/_2DNote.svg)](http://hits.dwyl.com/hchiam/_2DNote)
 
-**Potential use:** 2D games that people can play together, regardless of vision capabilities? Enable hearing what you're drawing? Hear the contours of someone else's sketch? Audio version of a signature?
+**Potential:** 2D app that people can use together, regardless of vision capabilities? Enable hearing what you're drawing? Hear the contours of someone else's sketch? Audio version of a signature?
 
 Why not use binaural audio? So that even devices with only 1 speaker can express 2D position, even of multiple simultaneous instances.
 
