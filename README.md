@@ -42,6 +42,8 @@ Here's an example of 2 notes playing simultaneously: [`example-two-notes.html`](
 
 ## API
 
+The things you're most likely to use are: `.play(e)`, `.update(e)`, `.stop()`, and `.copy()`.
+
 (Full details in [`_2DNote.js`](https://github.com/hchiam/_2DNote/blob/master/_2DNote.js).)
 
 ### `_2DNote.audioContext`:
