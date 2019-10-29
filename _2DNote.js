@@ -43,40 +43,8 @@ const _2DNote = {
   },
 
   getFrequency: function (e) { // e = event or element
-    if (e.currentTarget && e.clientX && e.clientY) {
-      // event
-      return this.getFrequencyFromMouseX(e);
-    } else {
-      // element
-      const x = e.offsetLeft;
-      return this.getFrequencyFromX(x);
-    }
-  },
-
-  getVolume: function (e) { // e = event or element
-    if (e.currentTarget && e.clientX && e.clientY) {
-      // event
-      return this.getVolumeFromMouseY(e);
-    } else {
-      // element
-      const y = e.offsetTop;
-      return this.getVolumeFromY(y);
-    }
-  },
-
-  getFrequencyFromMouseX: function (event) {
-    const x = event.clientX;
-    const frequency = this.getFrequencyFromX(x);
-    return frequency;
-  },
-
-  getVolumeFromMouseY: function (event) {
-    const y = event.clientY;
-    const volume = this.getVolumeFromY(y);
-    return volume;
-  },
-
-  getFrequencyFromX: function (x) {
+    const isEvent = (e.currentTarget && e.clientX && e.clientY);
+    const x = (isEvent) ? event.clientX : e.offsetLeft;
     const screenWidth = document.documentElement.clientWidth;
     const inputRange = [0, screenWidth];
     const comfyFrequencyRange = [150, 400];
@@ -84,7 +52,9 @@ const _2DNote = {
     return frequency;
   },
 
-  getVolumeFromY: function (y) {
+  getVolume: function (e) { // e = event or element
+    const isEvent = (e.currentTarget && e.clientX && e.clientY);
+    const y = (isEvent) ? event.clientY : e.offsetLeft;
     const screenHeight = document.documentElement.clientHeight;
     const inputRange = [0, screenHeight];
     const comfyVolumeRange = [0, 0.5]; // technically getting gain (which ranges 0 to 1)
