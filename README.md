@@ -60,7 +60,7 @@ Here's an example of 2 notes playing simultaneously: [`example-two-notes.html`](
 ### `_2DNote.update(e)` or `_2DNote.update(e, callback)`:
 
 * This causes the note that the `_2DNote` instance is playing to update to the current position of the element or mouse click event, which it figures out for you. (`e` is for event ***or*** element.)
-* `callback` is an optional parameter, and is a function that will be run from within `update()` with this signature: `callback(volume, frequency)`. See full details in [`_2DNote.js`](https://github.com/hchiam/_2DNote/blob/master/_2DNote.js).
+* `callback` is an optional parameter, and is a function that will be run from within `update()` with this signature: `callback(volume, frequency)`. See full details in [`_2DNote.js`](https://github.com/hchiam/_2DNote/blob/master/_2DNote.js). See usage example in [`example-include.html`](https://github.com/hchiam/_2DNote/blob/master/example-include.html) or [`example-two-notes.html`](https://github.com/hchiam/_2DNote/blob/master/example-two-notes.html).
 
 ### `_2DNote.stop()`:
 
