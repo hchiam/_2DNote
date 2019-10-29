@@ -109,20 +109,16 @@
     }
 
     function colourSoundIcon(volume, frequency) {
-      const minComfyVolume = 0;
-      const maxComfyVolume = 0.5;
-      let volumeNum = _2DNote.normalize(volume, 
-                                              minComfyVolume,maxComfyVolume, 
-                                              0,100);
-      volumeNum = Math.round(volumeNum);
-      const minComfyFreq = 150;
-      const maxComfyFreq = 400;
-      let frequencyNum = _2DNote.normalize(frequency, 
-                                                 minComfyFreq,maxComfyFreq, 
-                                                 0,359);
-      frequencyNum = Math.round(frequencyNum);
-      let output = 'hsl(' + String(frequencyNum) + ',' + String(volumeNum) + '%, 50%)';
-      document.getElementById('sound-icon').style.color = output;
+      const comfyFrequencyRange = [150, 400];
+      const hueRange = [0, 359];
+      let hue = _2DNote.normalize(frequency, comfyFrequencyRange, hueRange);
+      hue = Math.round(hue);
+      const comfyVolumeRange = [0, 0.5];
+      const saturationRange = [0, 100];
+      let saturation = _2DNote.normalize(volume, comfyVolumeRange, saturationRange);
+      saturation = Math.round(saturation);
+      const hsl = 'hsl(' + String(hue) + ',' + String(saturation) + '%, 50%)';
+      document.getElementById('sound-icon').style.color = hsl;
     }
   </script>
 </body>
