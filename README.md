@@ -42,7 +42,7 @@ Here's an example of 2 notes playing simultaneously: [`example-two-notes.html`](
 
 ## API
 
-The things you're most likely to use are: `.play(e)`, `.update(e)`, `.stop()`, and `.copy()`.
+The things you're most likely to use are: [`.play(e)`](https://github.com/hchiam/_2DNote#_2dnoteplaye), [`.update(e)`](https://github.com/hchiam/_2DNote#_2dnoteupdatee-or-_2dnoteupdatee-callback), [`.stop()`](https://github.com/hchiam/_2DNote#_2dnotestop), and [`.copy()`](https://github.com/hchiam/_2DNote#_2dnotecopy).
 
 (Full details in [`_2DNote.js`](https://github.com/hchiam/_2DNote/blob/master/_2DNote.js).)
 
@@ -68,6 +68,10 @@ The things you're most likely to use are: `.play(e)`, `.update(e)`, `.stop()`, a
 
 * This stops the note that the `_2DNote` instance is currently playing.
 
+### `_2DNote.copy()`:
+
+* This returns a deep clone of the `_2DNote` instance. Extra instances make it more convenient to play multiple notes at the same time.
+
 ### `_2DNote.getFrequency(e)`:
 
 * This returns the note frequency based on the x coordinate of the element ***or*** mouse click event, which it figures out for you. (`e` is for event ***or*** element.)
@@ -79,7 +83,3 @@ The things you're most likely to use are: `.play(e)`, `.update(e)`, `.stop()`, a
 ### `_2DNote.normalize(value, inputRange, outputRange)`:
 
 * This maps the value found within the input range (`[inputRangeMin, inputRangeMax]`) to be in the chosen output range (`[outputRangeMin, outputRangeMax]`). It returns the re-mapped value.
-
-### `_2DNote.copy()`:
-
-* This returns a deep clone of the `_2DNote` instance. Extra instances make it more convenient to play multiple notes at the same time.
