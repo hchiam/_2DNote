@@ -1,6 +1,10 @@
 <head>
   <script src='https://kit.fontawesome.com/a076d05399.js'></script>
   <style>
+    * {
+      user-select: none;
+    }
+
     body {
       background: #333;
       color: snow;
@@ -42,8 +46,12 @@
   </style>
 </head>
 <!-- USE _2DNote! -->
-<body onclick="playOrStop(event)" 
-      onmousemove="instructToClickToStop();_2DNote.update(event,colourSoundIcon);" 
+<body onmousedown="playAndInstruct(event);" 
+      ontouchstart="playAndInstruct(event);" 
+      onmouseup="stopAndInstruct();" 
+      ontouchend="stopAndInstruct();" 
+      onmousemove="updateAndInstruct(event);" 
+      ontouchmove="updateAndInstruct(event);" 
       onmouseleave="exitedView();">
   <div id="main" role="main">
     <h1 id="audio-reminder" aria-hidden="true">Make sure audio is on</h1>
@@ -57,23 +65,29 @@
   <!-- USE _2DNote! -->
   <script>
     setTimeout(function(){ 
-      document.getElementById('instruction').innerHTML = 'Click anywhere to start';
+      document.getElementById('instruction').innerHTML = '<span style="color: lime;">Click</span> and <span style="color: lime;">drag</span> anywhere inside this screen.';
     }, 1000);
 
     let on = false;
 
-    function playOrStop(e) {
-      if (on) {
-        on = false;
-        _2DNote.stop();
-        instructToClickToStart();
-      } else {
-        on = true;
-        hideAudioReminder();
-        instructToMoveMouse();
-        _2DNote.play(e);
-      }
+    function playAndInstruct(e) {
+      on = true;
+      hideAudioReminder();
+      instructToMoveMouse();
       toggleSoundIcon();
+      _2DNote.play(e);
+    }
+
+    function stopAndInstruct() {
+      on = false;
+      _2DNote.stop();
+      instructToClickToStart();
+      toggleSoundIcon();
+    }
+
+    function updateAndInstruct(e) {
+      _2DNote.update(e, colourSoundIcon);
+      instructToClickToStop();
     }
 
     function exitedView() {
@@ -83,7 +97,7 @@
     }
 
     function instructToMoveMouse() {
-      document.getElementById('instruction').innerHTML = 'Move mouse to play with volume and pitch';
+      document.getElementById('instruction').innerHTML = '<span style="color: lime;">↕</span> = volume, <span style="color: lime;">↔️</span> = pitch';
     }
 
     function hideAudioReminder() {
@@ -91,12 +105,12 @@
     }
 
     function instructToClickToStart() {
-      document.getElementById('instruction').innerHTML = 'Click anywhere to start';
+      document.getElementById('instruction').innerHTML = '<span style="color: lime;">Click</span> screen and <span style="color: lime;">drag</span>';
     }
 
     function instructToClickToStop() {
       if (on) {
-        document.getElementById('instruction').innerHTML = 'Move mouse to play with volume and pitch <br/><span style="color: lime;">Click anywhere to stop</span>';
+        document.getElementById('instruction').innerHTML = '<span style="color: lime;">↕</span> = volume, <span style="color: lime;">↔️</span> = pitch <br/><span style="color: lime;">Let go to stop</span>';
       }
     }
 
