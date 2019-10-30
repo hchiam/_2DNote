@@ -3,12 +3,18 @@
 const _2DNote = {
 
   audioContext: new AudioContext(),
-
   note: null,
 
+  viewXRange: [0, document.documentElement.clientWidth],
+  viewYRange: [0, document.documentElement.clientHeight],
+
+  comfyFrequencyRange: [150, 400],
+  comfyVolumeRange: [0, 0.5], // technically gain (ranges from 0 to 1)
+
   play: function (e) { // e = event or element
-    // example usage: <body onmousemove="_2DNote.play(event)" style="width: 100vw; height: 100vh;"></body>
+    // example usage: <body onmousedown="_2DNote.play(event);" style="width: 100vw; height: 100vh;" ontouchstart="_2DNote.play(event);"></body>
     this.stop();
+    this.setupExitedViewDetection();
     const frequency = this.getFrequency(e);
     const volume = this.getVolume(e);
     const volumeSetup = this.audioContext.createGain();
@@ -37,27 +43,45 @@ const _2DNote = {
   },
 
   stop: function () {
-    if (this.note === null) return;
+    // example usage: <body onmouseup="_2DNote.stop();" style="width: 100vw; height: 100vh;" ontouchend="_2DNote.stop();"></body>
+    if (this.note == null) return;
     const oscillator = this.note.oscillator;
     oscillator.stop(this.audioContext.currentTime);
     this.note = null;
   },
 
+  setupExitedViewDetection: function () {
+    // TODO: only continue if detect does not already exist
+    document.body.removeEventListener('mouseleave', this.warnExitedView);
+    document.body.removeEventListener('touchcancel', this.warnExitedView);
+    document.body.addEventListener('mouseleave', this.warnExitedView);
+    document.body.addEventListener('touchcancel', this.warnExitedView);
+  },
+
+  warnExitedView: function () {
+    const screenWidth = document.documentElement.clientWidth;
+    const screenHeight = document.documentElement.clientHeight;
+    const simulatedCenterClick = { // center: guaranteed != edge
+      currentTarget: true,
+      clientX: screenWidth / 2,
+      clientY: screenHeight / 2,
+    };
+    _2DNote.play(simulatedCenterClick);
+    setTimeout(function() {
+      _2DNote.stop();
+    }, 100);
+  },
+
   getFrequency: function (e) { // e = event or element
     const x = this.getX(e);
-    const screenWidth = document.documentElement.clientWidth;
-    const inputRange = [0, screenWidth];
-    const comfyFrequencyRange = [150, 400];
-    const frequency = this.normalize(x, inputRange, comfyFrequencyRange);
+    const frequency = this.normalize(x, this.viewXRange, this.comfyFrequencyRange);
     return frequency;
   },
 
   getVolume: function (e) { // e = event or element
     const y = this.getY(e);
-    const screenHeight = document.documentElement.clientHeight;
-    const inputRange = [0, screenHeight];
-    const comfyVolumeRange = [0, 0.5]; // technically getting gain (which ranges 0 to 1)
-    const volume = this.normalize(y, inputRange, comfyVolumeRange);
+    // technically getting gain (which ranges 0 to 1)
+    const volume = this.normalize(y, this.viewYRange, this.comfyVolumeRange);
     return volume;
   },
 

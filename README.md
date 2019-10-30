@@ -57,7 +57,8 @@ The things you're most likely to use are: [`.play(e)`](https://github.com/hchiam
 ### `_2DNote.play(e)`:
 
 * This plays a note based on the position of the element or mouse click event, which it figures out for you. (`e` is for event ***or*** element.)
-* **UX reminder:** You should let users know when the cursor moves outside the window by stopping the note from playing when that happens. This avoids having users click something outside the window without realizing it. To do that, try something like `<body onmouseleave="_2DNote.stop();">` on the `body` tag or the enclosing HTML element. See [`example-include.html`](https://github.com/hchiam/_2DNote/blob/master/example-include.html) or [`example-two-notes.html`](https://github.com/hchiam/_2DNote/blob/master/example-two-notes.html) for examples.
+* **Note:** The note automatically stops playing if the cursor moves outside the *window*. This avoids having users click something outside the window without realizing it.
+* **UX reminder:** If you plan to use `_2DNote` in only one area of the page, you should let users know when the cursor moves outside of that area. To do that, try something like `<tag-name onmouseleave="_2DNote.stop();">` on the enclosing HTML element tag. See [`example-include.html`](https://github.com/hchiam/_2DNote/blob/master/example-include.html) or [`example-two-notes.html`](https://github.com/hchiam/_2DNote/blob/master/example-two-notes.html) for examples placed on the `body` tag.
 
 ### `_2DNote.update(e)` or `_2DNote.update(e, callback)`:
 
