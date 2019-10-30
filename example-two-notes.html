@@ -1,6 +1,10 @@
 <head>
   <script src='https://kit.fontawesome.com/a076d05399.js'></script>
   <style>
+    * {
+      user-select: none;
+    }
+    
     body {
       background: #333;
       color: snow;
@@ -108,7 +112,7 @@
     }
 
     function instructToMoveMouse() {
-      document.getElementById('instruction').innerHTML = 'Move mouse to play with volume and pitch';
+      document.getElementById('instruction').innerHTML = 'Move mouse to play with <span style="color: lime;">volume ↕</span> and <span style="color: lime;">pitch ↔️</span>';
     }
 
     function hideAudioReminder() {
@@ -121,7 +125,7 @@
 
     function instructToClickToStop() {
       if (on) {
-        document.getElementById('instruction').innerHTML = 'Move mouse to play with volume and pitch <br/><span style="color: lime;">Click anywhere to stop</span>';
+        document.getElementById('instruction').innerHTML = 'Move mouse to play with <span style="color: lime;">volume ↕</span> and <span style="color: lime;">pitch ↔️</span> <br/><span style="color: lime;">Click anywhere to stop</span>';
       }
     }
 
