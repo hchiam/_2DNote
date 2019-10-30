@@ -23,7 +23,7 @@ _2DNote.js is made from pure "vanilla" JavaScript. So no extra dependencies. :sm
 ***Yes:***
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.0.0/_2DNote.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.2.0/_2DNote.js"></script>
 ```
 
 You can also get the latest at `https://cdn.jsdelivr.net/gh/hchiam/_2DNote@master/_2DNote.js` or `https://cdn.jsdelivr.net/gh/hchiam/_2DNote@latest/_2DNote.js`
