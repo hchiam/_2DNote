@@ -69,6 +69,8 @@ const _2DNote = {
     _2DNote.play(simulatedCenterClick);
     setTimeout(function() {
       _2DNote.stop();
+      document.body.removeEventListener('mouseleave', _2DNote.warnExitedView);
+      document.body.removeEventListener('touchcancel', _2DNote.warnExitedView);  
     }, 100);
   },
 
