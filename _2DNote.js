@@ -26,6 +26,7 @@ const _2DNote = {
   },
 
   update: function (e, callback) { // e = event or element
+    if (!this.note) return;
     const frequency = this.getFrequency(e);
     const volume = this.getVolume(e);
     const volumeSetup = this.note.volumeSetup;
@@ -43,8 +44,7 @@ const _2DNote = {
   },
 
   getFrequency: function (e) { // e = event or element
-    const isEvent = (e.currentTarget && e.clientX && e.clientY);
-    const x = (isEvent) ? event.clientX : e.offsetLeft;
+    const x = this.getX(e);
     const screenWidth = document.documentElement.clientWidth;
     const inputRange = [0, screenWidth];
     const comfyFrequencyRange = [150, 400];
@@ -53,13 +53,36 @@ const _2DNote = {
   },
 
   getVolume: function (e) { // e = event or element
-    const isEvent = (e.currentTarget && e.clientX && e.clientY);
-    const y = (isEvent) ? event.clientY : e.offsetLeft;
+    const y = this.getY(e);
     const screenHeight = document.documentElement.clientHeight;
     const inputRange = [0, screenHeight];
     const comfyVolumeRange = [0, 0.5]; // technically getting gain (which ranges 0 to 1)
     const volume = this.normalize(y, inputRange, comfyVolumeRange);
     return volume;
+  },
+
+  getX: function (e) { // e = event or element
+    const isMouseEvent = (e.currentTarget && e.clientX);
+    const isTouchEvent = (e.touches);
+    if (isMouseEvent) {
+      return e.clientX;
+    } else if (isTouchEvent) {
+      return e.touches[0].clientX;
+    } else { // element
+      return e.offsetLeft;
+    }
+  },
+
+  getY: function (e) { // e = event or element
+    const isMouseEvent = (e.currentTarget && e.clientY);
+    const isTouchEvent = (e.touches);
+    if (isMouseEvent) {
+      return e.clientY;
+    } else if (isTouchEvent) {
+      return e.touches[0].clientY;
+    } else { // element
+      return e.offsetLeft;
+    }
   },
 
   normalize: function (value, [inputRangeMin,inputRangeMax], [outputRangeMin,outputRangeMax]) {
