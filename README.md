@@ -2,6 +2,12 @@
 
 [![HitCount](http://hits.dwyl.com/hchiam/_2DNote.svg)](http://hits.dwyl.com/hchiam/_2DNote)
 
+[Live Demo](https://github.com/hchiam/_2DNote#live-demo)
+
+[Include in HTML](https://github.com/hchiam/_2DNote#can-i-include-it-in-my-own-html-code)
+
+[API](https://github.com/hchiam/_2DNote#api)
+
 **Purpose:** An experiment in making visual interfaces more accessible to people who are blind. Screen readers linearize your page content, so they don't communicate 2-dimensional visuals very well. You can address that by mapping 2D positions to notes.
 
 **Potential Uses:** Create 2D games and apps that people can use together, regardless of vision capabilities? Hear the contours of your signature as you write it? Enable people to "hear" what someone else is drawing? Locate elements on a page? Convert graphs into sound? Etc.
