@@ -11,6 +11,18 @@ const _2DNote = {
   comfyFrequencyRange: [150, 400],
   comfyVolumeRange: [0, 0.5], // technically gain (ranges from 0 to 1)
 
+  setAs2DArea: function (e, callbackUponUpdate) { // e = event or element
+    // example usage: _2DNote.setAs2DArea(document.getElementById('2d-area', callbackUponUpdate));
+    this.callbackUponUpdate = callbackUponUpdate;
+    document.body.addEventListener('mousedown', this.play.bind(this));
+    document.body.addEventListener('mouseup', this.stop.bind(this));
+    document.body.addEventListener('mousemove', this.update.bind(this));
+    document.body.addEventListener('touchstart', this.play.bind(this));
+    document.body.addEventListener('touchend', this.stop.bind(this));
+    document.body.addEventListener('touchmove', this.update.bind(this));
+    this.setupExitedViewDetection();
+  },
+
   play: function (e) { // e = event or element
     // example usage: <body onmousedown="_2DNote.play(event);" style="width: 100vw; height: 100vh;" ontouchstart="_2DNote.play(event);"></body>
     this.stop();
@@ -31,6 +43,7 @@ const _2DNote = {
     this.note = {oscillator, volumeSetup};
   },
 
+  callbackUponUpdate: null,
   update: function (e, callback) { // e = event or element
     if (!this.note) return;
     const frequency = this.getFrequency(e);
@@ -39,7 +52,11 @@ const _2DNote = {
     volumeSetup.gain.value = volume;
     const oscillator = this.note.oscillator;
     oscillator.frequency.value = frequency;
-    if (callback) callback(volume, frequency);
+    if (callback) {
+      callback(volume, frequency);
+    } else if (this.callbackUponUpdate) {
+      this.callbackUponUpdate(volume, frequency);
+    }
   },
 
   stop: function () {
@@ -107,7 +124,7 @@ const _2DNote = {
     } else if (isTouchEvent) {
       return e.touches[0].clientY;
     } else { // element
-      return e.offsetLeft;
+      return e.offsetTop;
     }
   },
 
