@@ -24,9 +24,6 @@ _2DNote.js is made from pure "vanilla" JavaScript. So no extra dependencies. :sm
 
 ```html
 <script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.3.0/_2DNote.js"></script>
-<script>
-  _2DNote.setAs2DArea(document.getElementById('2d-area', callbackUponUpdate));
-</script>
 ```
 
 You can also get the latest at `https://cdn.jsdelivr.net/gh/hchiam/_2DNote@master/_2DNote.js` or `https://cdn.jsdelivr.net/gh/hchiam/_2DNote@latest/_2DNote.js`
@@ -37,6 +34,34 @@ For example:
 
 ```html
 <div onmousemove="_2DNote.update(event,colourSoundIcon);">...</div>
+```
+
+For quick setup on the `body` tag:
+```html
+<body>
+  <script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.3.0/_2DNote.js"></script>
+  <script>
+    _2DNote.setAs2DArea(document.body, callbackUponUpdate);
+    function callbackUponUpdate() {
+      // do something whenever _2DNote.update() is triggered;
+    }
+  </script>
+</body>
+```
+
+For quick setup of a custom 2D click/touch area:
+```html
+<body>
+  <div id="2d-area" style="width: 100vw; height: 100vh;">...</div>
+  ...
+  <script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.3.0/_2DNote.js"></script>
+  <script>
+    _2DNote.setAs2DArea(document.getElementById('2d-area'), callbackUponUpdate);
+    function callbackUponUpdate() {
+      // do something whenever _2DNote.update() is triggered;
+    }
+  </script>
+</body>
 ```
 
 For a full working code example, see [`example-include.html`](https://github.com/hchiam/_2DNote/blob/master/example-include.html)
