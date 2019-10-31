@@ -29,7 +29,7 @@ _2DNote.js is made from pure "vanilla" JavaScript. So no extra dependencies. :sm
 ***Yes:***
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.3.0/_2DNote.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.4.0/_2DNote.js"></script>
 ```
 
 You can also get the latest at `https://cdn.jsdelivr.net/gh/hchiam/_2DNote@master/_2DNote.js` or `https://cdn.jsdelivr.net/gh/hchiam/_2DNote@latest/_2DNote.js`
@@ -45,7 +45,7 @@ For example:
 For quick setup on the `body` tag:
 ```html
 <body>
-  <script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.3.0/_2DNote.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.4.0/_2DNote.js"></script>
   <script>
     _2DNote.setAs2DArea(document.body, callbackUponUpdate);
     function callbackUponUpdate() {
@@ -60,7 +60,7 @@ For quick setup of a custom 2D click/touch area:
 <body>
   <div id="2d-area" style="width: 100vw; height: 100vh;">...</div>
   ...
-  <script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.3.0/_2DNote.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.4.0/_2DNote.js"></script>
   <script>
     _2DNote.setAs2DArea(document.getElementById('2d-area'), callbackUponUpdate);
     function callbackUponUpdate() {

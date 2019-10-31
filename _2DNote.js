@@ -1,6 +1,6 @@
 // example usage: _2DNote.play(...) or _2DNote.update(...)
 
-const _2DNote = {
+var _2DNote = {
 
   audioContext: new AudioContext(),
   note: null,
@@ -27,30 +27,33 @@ const _2DNote = {
     // example usage: <body onmousedown="_2DNote.play(event);" style="width: 100vw; height: 100vh;" ontouchstart="_2DNote.play(event);"></body>
     this.stop();
     this.setupExitedViewDetection();
-    const frequency = this.getFrequency(e);
-    const volume = this.getVolume(e);
-    const volumeSetup = this.audioContext.createGain();
+    var frequency = this.getFrequency(e);
+    var volume = this.getVolume(e);
+    var volumeSetup = this.audioContext.createGain();
     volumeSetup.connect(this.audioContext.destination);
     volumeSetup.gain.value = volume;
-    const oscillator = this.audioContext.createOscillator();
+    var oscillator = this.audioContext.createOscillator();
     oscillator.type = 'sine';
     oscillator.frequency.value = frequency;
     oscillator.connect(volumeSetup);
     // instead of oscillator.connect(this.audioContext.destination);
     oscillator.start();
-    // const delayThatAvoidsCrazyReverbs = 1;
+    // var delayThatAvoidsCrazyReverbs = 1;
     // oscillator.stop(this.audioContext.currentTime + delayThatAvoidsCrazyReverbs);
-    this.note = {oscillator, volumeSetup};
+    this.note = {
+      oscillator: oscillator,
+      volumeSetup: volumeSetup,
+    };
   },
 
   callbackUponUpdate: null,
   update: function (e, callback) { // e = event or element
     if (!this.note) return;
-    const frequency = this.getFrequency(e);
-    const volume = this.getVolume(e);
-    const volumeSetup = this.note.volumeSetup;
+    var frequency = this.getFrequency(e);
+    var volume = this.getVolume(e);
+    var volumeSetup = this.note.volumeSetup;
     volumeSetup.gain.value = volume;
-    const oscillator = this.note.oscillator;
+    var oscillator = this.note.oscillator;
     oscillator.frequency.value = frequency;
     if (callback) {
       callback(volume, frequency);
@@ -62,7 +65,7 @@ const _2DNote = {
   stop: function () {
     // example usage: <body onmouseup="_2DNote.stop();" style="width: 100vw; height: 100vh;" ontouchend="_2DNote.stop();"></body>
     if (this.note == null) return;
-    const oscillator = this.note.oscillator;
+    var oscillator = this.note.oscillator;
     oscillator.stop(this.audioContext.currentTime);
     this.note = null;
   },
@@ -76,9 +79,9 @@ const _2DNote = {
   },
 
   warnExitedView: function () {
-    const screenWidth = document.documentElement.clientWidth;
-    const screenHeight = document.documentElement.clientHeight;
-    const simulatedCenterClick = { // center: guaranteed != edge
+    var screenWidth = document.documentElement.clientWidth;
+    var screenHeight = document.documentElement.clientHeight;
+    var simulatedCenterClick = { // center: guaranteed != edge
       currentTarget: true,
       clientX: screenWidth / 2,
       clientY: screenHeight / 2,
@@ -92,21 +95,21 @@ const _2DNote = {
   },
 
   getFrequency: function (e) { // e = event or element
-    const x = this.getX(e);
-    const frequency = this.normalize(x, this.viewXRange, this.comfyFrequencyRange);
+    var x = this.getX(e);
+    var frequency = this.normalize(x, this.viewXRange, this.comfyFrequencyRange);
     return frequency;
   },
 
   getVolume: function (e) { // e = event or element
-    const y = this.getY(e);
+    var y = this.getY(e);
     // technically getting gain (which ranges 0 to 1)
-    const volume = this.normalize(y, this.viewYRange, this.comfyVolumeRange);
+    var volume = this.normalize(y, this.viewYRange, this.comfyVolumeRange);
     return volume;
   },
 
   getX: function (e) { // e = event or element
-    const isMouseEvent = (e.currentTarget && e.clientX);
-    const isTouchEvent = (e.touches);
+    var isMouseEvent = (e.currentTarget && e.clientX);
+    var isTouchEvent = (e.touches);
     if (isMouseEvent) {
       return e.clientX;
     } else if (isTouchEvent) {
@@ -117,8 +120,8 @@ const _2DNote = {
   },
 
   getY: function (e) { // e = event or element
-    const isMouseEvent = (e.currentTarget && e.clientY);
-    const isTouchEvent = (e.touches);
+    var isMouseEvent = (e.currentTarget && e.clientY);
+    var isTouchEvent = (e.touches);
     if (isMouseEvent) {
       return e.clientY;
     } else if (isTouchEvent) {
@@ -129,9 +132,9 @@ const _2DNote = {
   },
 
   normalize: function (value, [inputRangeMin,inputRangeMax], [outputRangeMin,outputRangeMax]) {
-    const inputBias = value - inputRangeMin;
-    const ratioAdjustment = (outputRangeMax - outputRangeMin) / (inputRangeMax - inputRangeMin);
-    const outputBias = outputRangeMin;
+    var inputBias = value - inputRangeMin;
+    var ratioAdjustment = (outputRangeMax - outputRangeMin) / (inputRangeMax - inputRangeMin);
+    var outputBias = outputRangeMin;
     return inputBias * ratioAdjustment + outputBias;
   },
 
@@ -145,14 +148,14 @@ const _2DNote = {
       if (object === null || typeof object !== "object") {
         return object;
       } else if (Array.isArray(object)) {
-        const arrayCopy = [];
+        var arrayCopy = [];
         object.forEach(function(element) {
           arrayCopy.push(recursiveDeepCopy(element));
         });
         return arrayCopy;
       } else {
-        const objectCopy = {};
-        for (let property in object) {
+        var objectCopy = {};
+        for (var property in object) {
           if (object.hasOwnProperty(property)) {
             if (property === 'audioContext') {
               objectCopy.audioContext = new AudioContext();
