@@ -83,12 +83,15 @@
     _2DNote.setAs2DArea(document.getElementById('2d-area'));
 
     // initialize players to avoid errors
-    document.getElementById('player-1').style.left = 'calc(10% - 50px)';
-    document.getElementById('player-1').style.top = 'calc(75% - 50px)';
+
+    var w = Math.min(document.documentElement.clientWidth, window.innerWidth);
+    var h = Math.min(document.documentElement.clientHeight, window.innerHeight);
+    document.getElementById('player-1').style.left = (w/10 - 50).toString() + 'px';
+    document.getElementById('player-1').style.top = (h*3/4 - 50).toString() + 'px';
     document.getElementById('player-1').style.width = '100px';
     document.getElementById('player-1').style.height = '100px';
-    document.getElementById('player-2').style.left = 'calc(90% - 50px)';
-    document.getElementById('player-2').style.top = 'calc(75% - 50px)';
+    document.getElementById('player-2').style.left = (w*9/10 - 50).toString() + 'px';
+    document.getElementById('player-2').style.top = (h*3/4 - 50).toString() + 'px';
     document.getElementById('player-2').style.width = '100px';
     document.getElementById('player-2').style.height = '100px';
 
@@ -106,6 +109,14 @@
       var bottomWall = document.documentElement.clientHeight - h / 2;
       if (overlap('player-1', 'ball')) {
         var player1Box = getBoundingBox('player-1');
+        var ballBox = getBoundingBox('ball');
+        leftWall = player1Box.right;
+        rightWall = player1Box.left - ballBox.width;
+        topWall = player1Box.bottom;
+        bottomWall = player1Box.top - ballBox.height;
+      }
+      if (overlap('player-2', 'ball')) {
+        var player1Box = getBoundingBox('player-2');
         var ballBox = getBoundingBox('ball');
         leftWall = player1Box.right;
         rightWall = player1Box.left - ballBox.width;
