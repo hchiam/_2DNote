@@ -1,0 +1,201 @@
+<head>
+  <style>
+    * {
+      user-select: none;
+    }
+
+    body {
+      background: #333;
+      color: snow;
+      width: 100vw;
+      height: 100vh;
+      font-family: avenir, arial, monospace;
+      text-align: center;
+    }
+
+    #main {
+      background: #5e4f40;
+      align-content: center;
+      border-radius: 1em;
+    }
+
+    footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      padding-bottom: 1em;
+    }
+
+    a {
+      color: snow;
+    }
+
+    a:hover {
+      color: lime;
+    }
+
+    #player-1, #player-2 {
+      position: absolute;
+      width: 100px;
+      height: 20px;
+      top: calc(75% - 50px);
+    }
+
+    #player-1 {
+      left: calc(10% - 50px);
+      background: blue;
+    }
+
+    #player-2 {
+      left: calc(90% - 50px);
+      background: red;
+    }
+
+    #ball {
+      position: absolute;
+      width: 75px;
+      height: 50px;
+      left: calc(50% - 50px);
+      top: 0;
+      background: yellow;
+      color: black;
+      border-radius: 50px;
+      padding: 25px 0 0 0;
+    }
+  </style>
+</head>
+
+<body id="2d-area" onclick="toggleSound(event);" onmousemove="_2DNote.update(event,updatePlayer1)">
+  <div id="main" role="main">
+    <p id="instruction" aria-live="polite"></p>
+    <p id="player-1">Player ①</p>
+    <p id="player-2">Player ②</p>
+    <p id="ball">Ball</p>
+  </div>
+
+  <!-- INCLUDE _2DNote! -->
+  <script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.4.0/_2DNote.js"></script>
+
+  <script>
+    // USE _2DNote!
+    _2DNote.setAs2DArea(document.getElementById('2d-area'));
+
+    // initialize players to avoid errors
+    document.getElementById('player-1').style.left = 'calc(10% - 50px)';
+    document.getElementById('player-1').style.top = 'calc(75% - 50px)';
+    document.getElementById('player-1').style.width = '100px';
+    document.getElementById('player-1').style.height = '20px';
+    document.getElementById('player-2').style.left = 'calc(90% - 50px)';
+    document.getElementById('player-2').style.top = 'calc(75% - 50px)';
+    document.getElementById('player-2').style.width = '100px';
+    document.getElementById('player-2').style.height = '20px';
+
+    var direction = {x:10, y:10};
+    setInterval(moveBall, 10);
+    function moveBall() {
+      var ball = document.getElementById('ball');
+      var x = parseInt(ball.style.left.replace('px','') || 0);
+      var y = parseInt(ball.style.top.replace('px','') || 0);
+      var w = parseInt(ball.style.width.replace('px','') || 0);
+      var h = parseInt(ball.style.height.replace('px','') || 0);
+      var leftWall = 0 - w/2;
+      var rightWall = document.documentElement.clientWidth - w / 2;
+      var topWall = 0 - h/2;
+      var bottomWall = document.documentElement.clientHeight - h / 2;
+      if (overlap('player-1', 'ball')) {
+        var player1Box = getBoundingBox('player-1');
+        var ballBox = getBoundingBox('ball');
+        leftWall = player1Box.right;
+        rightWall = player1Box.left - ballBox.width;
+        topWall = player1Box.bottom;
+        bottomWall = player1Box.top - ballBox.height;
+      }
+      if (x < leftWall && direction.x < 0) {
+        direction.x = Math.abs(direction.x);
+      } else if (x > rightWall && direction.x > 0) {
+        direction.x = -1 * Math.abs(direction.x);
+      }
+      if (y < topWall && direction.y < 0) {
+        direction.y = Math.abs(direction.y);
+      } else if (y > bottomWall && direction.y > 0) {
+        direction.y = -1 * Math.abs(direction.y);
+      }
+      ball.style.left = x + direction.x + 'px';
+      ball.style.top = y + direction.y + 'px';
+    }
+
+    var on = false;
+    function toggleSound(e) {
+      if (on) {
+        on = false;
+        _2DNote.stop(e);
+      } else {
+        on = true;
+        _2DNote.play(e);
+      }
+    }
+
+    function updatePlayer1(volume, frequency) {
+      colourPlayer1(volume, frequency);
+      followMouse('player-1');
+    }
+
+    function followMouse(id) {
+      var e = window.event;
+      var x = e.clientX;
+      var y = e.clientY;
+      var w = document.getElementById(id).offsetWidth;
+      var h = document.getElementById(id).offsetHeight;
+      document.getElementById(id).style.left = x - w/2;
+      document.getElementById(id).style.top = y - h/2;
+    }
+
+    function colourPlayer1(volume, frequency) {
+      var comfyFrequencyRange = [150, 400];
+      var hueRange = [0, 359];
+      var hue = _2DNote.normalize(frequency, comfyFrequencyRange, hueRange);
+      hue = Math.round(hue);
+      var comfyVolumeRange = [0, 0.5];
+      var saturationRange = [0, 100];
+      var saturation = _2DNote.normalize(volume, comfyVolumeRange, saturationRange);
+      saturation = Math.round(saturation);
+      var hsl = 'hsl(' + String(hue) + ',' + String(saturation) + '%, 50%)';
+      document.getElementById('player-1').style.background = hsl;
+      document.getElementById('player-1').style.color = 'black';
+    }
+
+    function overlap(id1, id2) {
+      var e1 = getBoundingBox(id1);
+      var e2 = getBoundingBox(id2);
+      if (!e1 || !e2) return false;
+      var haveOverlap = !(e1.right < e2.left || 
+                          e1.left > e2.right || 
+                          e1.bottom < e2.top || 
+                          e1.top > e2.bottom);
+      return haveOverlap;
+    }
+
+    function getBoundingBox(id) {
+      var element = document.getElementById(id);
+      var style = element.style;
+      var x = parseInt(style.left.replace('px',''));
+      var y = parseInt(style.top.replace('px',''));
+      var w = element.offsetWidth;
+      var h = element.offsetHeight;
+      var right = x + w;
+      var bottom = y + h;
+      if (isNaN(x) || isNaN(y) || isNaN(right) || isNaN(bottom) || isNaN(w) || isNaN(h)) {
+        return null;
+      }
+      return {
+        left: x,
+        top: y,
+        right: right,
+        bottom: bottom,
+        width: w,
+        height: h,
+      };
+    }
+  </script>
+</body>
