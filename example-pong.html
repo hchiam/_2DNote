@@ -38,8 +38,9 @@
     #player-1, #player-2 {
       position: absolute;
       width: 100px;
-      height: 20px;
+      height: 100px;
       top: calc(75% - 50px);
+      line-height: 100px;
     }
 
     #player-1 {
@@ -54,14 +55,14 @@
 
     #ball {
       position: absolute;
-      width: 75px;
+      width: 50px;
       height: 50px;
+      line-height: 50px;
       left: calc(50% - 50px);
       top: 0;
       background: yellow;
       color: black;
       border-radius: 50px;
-      padding: 25px 0 0 0;
     }
   </style>
 </head>
@@ -85,11 +86,11 @@
     document.getElementById('player-1').style.left = 'calc(10% - 50px)';
     document.getElementById('player-1').style.top = 'calc(75% - 50px)';
     document.getElementById('player-1').style.width = '100px';
-    document.getElementById('player-1').style.height = '20px';
+    document.getElementById('player-1').style.height = '100px';
     document.getElementById('player-2').style.left = 'calc(90% - 50px)';
     document.getElementById('player-2').style.top = 'calc(75% - 50px)';
     document.getElementById('player-2').style.width = '100px';
-    document.getElementById('player-2').style.height = '20px';
+    document.getElementById('player-2').style.height = '100px';
 
     var direction = {x:10, y:10};
     setInterval(moveBall, 10);
