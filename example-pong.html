@@ -95,8 +95,12 @@
     document.getElementById('player-2').style.width = '100px';
     document.getElementById('player-2').style.height = '100px';
 
-    var direction = {x:10, y:10};
-    setInterval(moveBall, 10);
+    // note_player2.play(document.getElementById('player-2'));
+
+    var fallbackX = 1;
+    var fallbackY = 1;
+    var direction = {x: fallbackX, y: fallbackY};
+    setInterval(moveBall, 1);
     function moveBall() {
       var ball = document.getElementById('ball');
       var x = parseInt(ball.style.left.replace('px','') || 0);
@@ -124,14 +128,18 @@
         bottomWall = player1Box.top - ballBox.height;
       }
       if (x < leftWall && direction.x < 0) {
-        direction.x = Math.abs(direction.x);
+        direction.x = 2 * Math.abs(direction.x);
       } else if (x > rightWall && direction.x > 0) {
-        direction.x = -1 * Math.abs(direction.x);
+        direction.x = -2 * Math.abs(direction.x);
+      } else {
+        direction.x = direction.x > 0 ? fallbackX : -fallbackX;
       }
       if (y < topWall && direction.y < 0) {
-        direction.y = Math.abs(direction.y);
+        direction.y = 2 * Math.abs(direction.y);
       } else if (y > bottomWall && direction.y > 0) {
-        direction.y = -1 * Math.abs(direction.y);
+        direction.y = -2 * Math.abs(direction.y);
+      } else {
+        direction.y = direction.y > 0 ? fallbackY : -fallbackY;
       }
       ball.style.left = x + direction.x + 'px';
       ball.style.top = y + direction.y + 'px';
