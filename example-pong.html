@@ -81,6 +81,8 @@
   <script>
     // USE _2DNote!
     _2DNote.setAs2DArea(document.getElementById('2d-area'));
+    var note_player2 = _2DNote.copy();
+    var note_ball = _2DNote.copy();
 
     // initialize players to avoid errors
 
@@ -97,6 +99,7 @@
 
     // note_player2.play(document.getElementById('player-2'));
 
+    note_ball.play(document.getElementById('ball'));
     var fallbackX = 1;
     var fallbackY = 1;
     var direction = {x: fallbackX, y: fallbackY};
@@ -143,6 +146,7 @@
       }
       ball.style.left = x + direction.x + 'px';
       ball.style.top = y + direction.y + 'px';
+      note_ball.update(document.getElementById('ball'));
     }
 
     var on = false;
