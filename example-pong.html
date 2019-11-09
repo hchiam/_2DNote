@@ -121,6 +121,7 @@
         rightWall = player1Box.left - ballBox.width;
         topWall = player1Box.bottom;
         bottomWall = player1Box.top - ballBox.height;
+        beep();
       }
       if (overlap('player-2', 'ball')) {
         var player1Box = getBoundingBox('player-2');
@@ -129,6 +130,7 @@
         rightWall = player1Box.left - ballBox.width;
         topWall = player1Box.bottom;
         bottomWall = player1Box.top - ballBox.height;
+        beep();
       }
       if (x < leftWall && direction.x < 0) {
         direction.x = 2 * Math.abs(direction.x);
@@ -220,6 +222,21 @@
         width: w,
         height: h,
       };
+    }
+
+    var note_beep = _2DNote.copy();
+    function beep() {
+      var screenWidth = document.documentElement.clientWidth;
+      var screenHeight = document.documentElement.clientHeight;
+      var simulatedCenterClick = { // center: guaranteed != edge
+        currentTarget: true,
+        clientX: screenWidth / 2,
+        clientY: screenHeight / 2,
+      };
+      note_beep.play(simulatedCenterClick);
+      setTimeout(function() {
+        note_beep.stop();
+      }, 100);
     }
   </script>
 </body>
