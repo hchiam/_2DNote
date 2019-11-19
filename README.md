@@ -32,7 +32,9 @@ _2DNote.js is made from pure "vanilla" JavaScript. So no extra dependencies. :sm
 <script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.5.0/_2DNote.min.js"></script>
 ```
 
-You can also get the latest at `https://cdn.jsdelivr.net/gh/hchiam/_2DNote@master/_2DNote.min.js` or `https://cdn.jsdelivr.net/gh/hchiam/_2DNote@latest/_2DNote.min.js`
+You can also get the latest at `https://cdn.jsdelivr.net/gh/hchiam/_2DNote@master/_2DNote.min.js` 
+
+or at `https://cdn.jsdelivr.net/gh/hchiam/_2DNote@latest/_2DNote.min.js`
 
 By including `_2DNote.js`, you get an object `_2DNote`, which you can use in your HTML or JS code.
 
