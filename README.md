@@ -18,6 +18,11 @@ You can think of the y dimension as the "proximity dimension" (louder = closer t
 
 _2DNote.js is made from pure "vanilla" JavaScript. So no extra dependencies. :smile:
 
+### Further reading
+
+* [Sonification](https://en.wikipedia.org/wiki/Sonification)
+* [Auditory display](https://en.wikipedia.org/wiki/Auditory_display)
+
 ## [Live Demo](https://codepen.io/hchiam/full/eYYdVeX)
 
 <https://codepen.io/hchiam/full/eYYdVeX>
