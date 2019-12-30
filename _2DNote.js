@@ -1,17 +1,17 @@
 // example usage: _2DNote.play(...) or _2DNote.update(...)
 
-var _2DNote = {
+var _2DNote = (function() {
 
-  audioContext: new AudioContext(),
-  note: null,
+  var audioContext = new AudioContext();
+  var note = null;
 
-  viewXRange: [0, document.documentElement.clientWidth],
-  viewYRange: [0, document.documentElement.clientHeight],
+  var viewXRange = [0, document.documentElement.clientWidth];
+  var viewYRange = [0, document.documentElement.clientHeight];
 
-  comfyFrequencyRange: [150, 400],
-  comfyVolumeRange: [0, 0.5], // technically gain (ranges from 0 to 1)
+  var comfyFrequencyRange = [150, 400];
+  var comfyVolumeRange = [0, 0.5]; // technically gain (ranges from 0 to 1)
 
-  setAs2DArea: function (e, callbackUponUpdate) { // e = event or element
+  function setAs2DArea(e, callbackUponUpdate) { // e = event or element
     // example usage: _2DNote.setAs2DArea(document.getElementById('2d-area', callbackUponUpdate));
     this.callbackUponUpdate = callbackUponUpdate;
     document.body.addEventListener('mousedown', this.play.bind(this));
@@ -21,9 +21,9 @@ var _2DNote = {
     document.body.addEventListener('touchend', this.stop.bind(this));
     document.body.addEventListener('touchmove', this.update.bind(this));
     this.setupExitedViewDetection();
-  },
+  }
 
-  play: function (e) { // e = event or element
+  function play(e) { // e = event or element
     // example usage: <body onmousedown="_2DNote.play(event);" style="width: 100vw; height: 100vh;" ontouchstart="_2DNote.play(event);"></body>
     this.stop();
     this.setupExitedViewDetection();
@@ -44,10 +44,10 @@ var _2DNote = {
       oscillator: oscillator,
       volumeSetup: volumeSetup,
     };
-  },
+  }
 
-  callbackUponUpdate: null,
-  update: function (e, callback) { // e = event or element
+  var callbackUponUpdate = null;
+  function update(e, callback) { // e = event or element
     if (!this.note) return;
     var frequency = this.getFrequency(e);
     var volume = this.getVolume(e);
@@ -60,25 +60,25 @@ var _2DNote = {
     } else if (this.callbackUponUpdate) {
       this.callbackUponUpdate(volume, frequency);
     }
-  },
+  }
 
-  stop: function () {
+  function stop() {
     // example usage: <body onmouseup="_2DNote.stop();" style="width: 100vw; height: 100vh;" ontouchend="_2DNote.stop();"></body>
     if (this.note == null) return;
     var oscillator = this.note.oscillator;
     oscillator.stop(this.audioContext.currentTime);
     this.note = null;
-  },
+  }
 
-  setupExitedViewDetection: function () {
+  function setupExitedViewDetection() {
     // TODO: only continue if detect does not already exist
     document.body.removeEventListener('mouseleave', this.warnExitedView);
     document.body.removeEventListener('touchcancel', this.warnExitedView);
     document.body.addEventListener('mouseleave', this.warnExitedView);
     document.body.addEventListener('touchcancel', this.warnExitedView);
-  },
+  }
 
-  warnExitedView: function () {
+  function warnExitedView() {
     var screenWidth = document.documentElement.clientWidth;
     var screenHeight = document.documentElement.clientHeight;
     var simulatedCenterClick = { // center: guaranteed != edge
@@ -92,22 +92,22 @@ var _2DNote = {
       document.body.removeEventListener('mouseleave', _2DNote.warnExitedView);
       document.body.removeEventListener('touchcancel', _2DNote.warnExitedView);  
     }, 100);
-  },
+  }
 
-  getFrequency: function (e) { // e = event or element
+  function getFrequency(e) { // e = event or element
     var x = this.getX(e);
     var frequency = this.normalize(x, this.viewXRange, this.comfyFrequencyRange);
     return frequency;
-  },
+  }
 
-  getVolume: function (e) { // e = event or element
+  function getVolume(e) { // e = event or element
     var y = this.getY(e);
     // technically getting gain (which ranges 0 to 1)
     var volume = this.normalize(y, this.viewYRange, this.comfyVolumeRange);
     return volume;
-  },
+  }
 
-  getX: function (e) { // e = event or element
+  function getX(e) { // e = event or element
     var isMouseEvent = (e.currentTarget && e.clientX);
     var isTouchEvent = (e.touches);
     if (isMouseEvent) {
@@ -117,9 +117,9 @@ var _2DNote = {
     } else { // element
       return e.offsetLeft;
     }
-  },
+  }
 
-  getY: function (e) { // e = event or element
+  function getY(e) { // e = event or element
     var isMouseEvent = (e.currentTarget && e.clientY);
     var isTouchEvent = (e.touches);
     if (isMouseEvent) {
@@ -129,16 +129,16 @@ var _2DNote = {
     } else { // element
       return e.offsetTop;
     }
-  },
+  }
 
-  normalize: function (value, [inputRangeMin,inputRangeMax], [outputRangeMin,outputRangeMax]) {
+  function normalize(value, [inputRangeMin,inputRangeMax], [outputRangeMin,outputRangeMax]) {
     var inputBias = value - inputRangeMin;
     var ratioAdjustment = (outputRangeMax - outputRangeMin) / (inputRangeMax - inputRangeMin);
     var outputBias = outputRangeMin;
     return inputBias * ratioAdjustment + outputBias;
-  },
+  }
 
-  copy: function () {
+  function copy() {
     /**
      * If you want to play multiple notes at the same time, 
      * you can use this to create more instances.
@@ -167,6 +167,26 @@ var _2DNote = {
         return objectCopy;
       }
     }
-  },
+  }
 
-};
+  return {
+    audioContext: audioContext,
+    note: note,
+    viewXRange: viewXRange,
+    viewYRange: viewYRange,
+    comfyFrequencyRange: comfyFrequencyRange,
+    comfyVolumeRange: comfyVolumeRange,
+    setAs2DArea: setAs2DArea,
+    play: play,
+    update: update,
+    stop: stop,
+    setupExitedViewDetection: setupExitedViewDetection,
+    warnExitedView: warnExitedView,
+    getFrequency: getFrequency,
+    getVolume: getVolume,
+    getX: getX,
+    getY: getY,
+    normalize: normalize,
+    copy: copy,
+  };
+})();

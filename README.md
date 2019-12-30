@@ -34,12 +34,12 @@ _2DNote.js is made from pure "vanilla" JavaScript. So no extra dependencies. :sm
 ***Yes:***
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.5.0/_2DNote.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.6.0/_2DNote.min.js"></script>
 ```
 
-You can also get the latest at `https://cdn.jsdelivr.net/gh/hchiam/_2DNote@master/_2DNote.min.js` 
-
-or at `https://cdn.jsdelivr.net/gh/hchiam/_2DNote@latest/_2DNote.min.js`
+While not recommended, you can auto-update to the latest by linking the `src` to:
+* `https://cdn.jsdelivr.net/gh/hchiam/_2DNote@master/_2DNote.min.js` or
+* `https://cdn.jsdelivr.net/gh/hchiam/_2DNote@latest/_2DNote.min.js`
 
 By including `_2DNote.js`, you get an object `_2DNote`, which you can use in your HTML or JS code.
 
@@ -52,7 +52,7 @@ For example:
 For quick setup on the `body` tag:
 ```html
 <body>
-  <script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.4.0/_2DNote.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.6.0/_2DNote.min.js"></script>
   <script>
     _2DNote.setAs2DArea(document.body, callbackUponUpdate);
     function callbackUponUpdate() {
@@ -67,7 +67,7 @@ For quick setup of a custom 2D click/touch area:
 <body>
   <div id="2d-area" style="width: 100vw; height: 100vh;">...</div>
   ...
-  <script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.4.0/_2DNote.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.6.0/_2DNote.min.js"></script>
   <script>
     _2DNote.setAs2DArea(document.getElementById('2d-area'), callbackUponUpdate);
     function callbackUponUpdate() {
