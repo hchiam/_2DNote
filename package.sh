@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# to package the .js code for use in your website via CDN (i.e. production use)
-# run this command:
-# bash package.sh
+# Purpose: To package a .js file that you have on GitHub
+# for use in your website via CDN (i.e. production use),
+# run this command: bash package.sh
 
 LIBRARY_NAME=_2DNote
-SOURCE_FILE=_2DNote.js
-MINIFIED_FILE=_2DNote.min.js
+SOURCE_FILE=_2DNote.js # edit this!
+MINIFIED_FILE=_2DNote.min.js # edit this!
 
 minify $SOURCE_FILE > $MINIFIED_FILE
 
