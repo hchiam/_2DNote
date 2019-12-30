@@ -13,8 +13,6 @@ minify $SOURCE_FILE > $MINIFIED_FILE
 # get latest release number #.#.#:
 git pull >/dev/null 2>&1 # (update just in case)
 LATEST_RELEASE_VERSION="$(git describe --tags --abbrev=0)"
-# MAJOR=(${LATEST_RELEASE_VERSION//./ })
-# MAJOR=$LATEST_RELEASE_VERSION | sed 's/-/ /g' | awk '{ print $1" "$2"\n"$1" "$3'}
 IFS='.' # delimiter
 read -a VERSION_NUMBERS <<< "$LATEST_RELEASE_VERSION"
 MAJOR=${VERSION_NUMBERS[0]}
