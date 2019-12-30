@@ -8,6 +8,9 @@ LIBRARY_NAME=_2DNote
 SOURCE_FILE=_2DNote.js # edit this!
 MINIFIED_FILE=_2DNote.min.js # edit this!
 
+# install minify if it's not available:
+if ! [ -x "$(command -v minify)" ]; then npm i minify -g; fi
+# minify the code:
 minify $SOURCE_FILE > $MINIFIED_FILE
 
 # get latest release number #.#.#:
@@ -19,6 +22,7 @@ MAJOR=${VERSION_NUMBERS[0]}
 MINOR=${VERSION_NUMBERS[1]}
 PATCH=${VERSION_NUMBERS[2]}
 
+echo
 echo "Enter a number:"
 echo
 echo " 0 = Keep as version ${LATEST_RELEASE_VERSION}"
@@ -41,6 +45,8 @@ elif [[ $REPLY =~ ^3$ ]]; then
 elif [[ $REPLY =~ ^[qQxXnN]$ ]]; then
   echo "Exiting."
   exit 1
+else
+  echo "Keeping as version ${LATEST_RELEASE_VERSION}"
 fi
 
 echo
