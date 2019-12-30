@@ -9,7 +9,7 @@ SOURCE_FILE=_2DNote.js # edit this!
 MINIFIED_FILE=_2DNote.min.js # edit this!
 
 # install minify if it's not available:
-if ! [ -x "$(command -v minify)" ]; then npm i minify -g; fi
+if ! [ -x "$(command -v minify)" ]; then npm i minify; fi
 # minify the code:
 minify $SOURCE_FILE > $MINIFIED_FILE
 
