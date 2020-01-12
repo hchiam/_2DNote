@@ -125,3 +125,11 @@ The things you're most likely to use are: [`.play(e)`](https://github.com/hchiam
 ### `_2DNote.normalize(value, inputRange, outputRange)`:
 
 * This maps the value found within the input range (`[inputRangeMin, inputRangeMax]`) to be in the chosen output range (`[outputRangeMin, outputRangeMax]`). It returns the re-mapped value.
+
+## Now also available on NPM
+
+<https://www.npmjs.com/package/2dnote>
+
+```bash
+npm i 2dnote
+```

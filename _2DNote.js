@@ -190,3 +190,5 @@ var _2DNote = (function() {
     copy: copy,
   };
 })();
+
+module.exports = _2DNote;

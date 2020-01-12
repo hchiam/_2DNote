@@ -1,0 +1,9 @@
+{
+  "name": "2dnote",
+  "version": "1.7.0",
+  "main": "_2DNote.js",
+  "author": "hchiam",
+  "description": "_2DNote",
+  "keywords": ["sonification", "2d-position"],
+  "license": "MIT"
+}
