@@ -191,4 +191,10 @@ var _2DNote = (function() {
   };
 })();
 
-module.exports = _2DNote;
+if (window) {
+  window._2DNote = _2DNote;
+}
+
+if (module) {
+  module.exports = _2DNote;
+}
