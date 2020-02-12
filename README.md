@@ -1,6 +1,8 @@
 # _2DNote: 2D Note Generator
 
-[![HitCount](http://hits.dwyl.com/hchiam/_2DNote.svg)](http://hits.dwyl.com/hchiam/_2DNote)
+[![NPM Download Stats](https://nodei.co/npm/2dnote.png?downloads=true)](https://www.npmjs.com/package/2dnote)
+
+[![version](https://img.shields.io/npm/v/2dnote.svg)]() [![HitCount](http://hits.dwyl.com/hchiam/_2DNote.svg)](http://hits.dwyl.com/hchiam/_2DNote)
 
 [Live Demo](https://github.com/hchiam/_2DNote#live-demo)
 
@@ -126,7 +128,7 @@ The things you're most likely to use are: [`.play(e)`](https://github.com/hchiam
 
 * This maps the value found within the input range (`[inputRangeMin, inputRangeMax]`) to be in the chosen output range (`[outputRangeMin, outputRangeMax]`). It returns the re-mapped value.
 
-## Now also available on NPM
+## Also available on NPM
 
 <https://www.npmjs.com/package/2dnote>
 
