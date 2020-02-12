@@ -26,7 +26,7 @@ echo
 echo "Enter a number:"
 echo
 echo " 0 = Keep as version ${LATEST_RELEASE_VERSION}"
-echo " 1 = Major breaking change? ($(($MAJOR+1)).$MINOR.$PATCH)"
+echo " 1 = Major breaking change? ($(($MAJOR+1)).0.0)"
 echo " 2 = Minor enhancement? ($MAJOR.$(($MINOR+1)).$PATCH)"
 echo " 3 = Backwards-compatible fix? ($MAJOR.$MINOR.$(($PATCH+1)))"
 echo
@@ -36,6 +36,8 @@ echo
 if [[ $REPLY =~ ^1$ ]]; then
   echo "Changing MAJOR version:"
   MAJOR="$(($MAJOR+1))"
+  MINOR=0
+  PATCH=0
 elif [[ $REPLY =~ ^2$ ]]; then
   echo "Changing MINOR version:"
   MINOR="$(($MINOR+1))"
