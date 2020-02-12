@@ -34,7 +34,7 @@ _2DNote.js is made from pure "vanilla" JavaScript. So no extra dependencies. :sm
 ***Yes:***
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.8.1/_2DNote.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.8.2/_2DNote.min.js"></script>
 ```
 
 While not recommended, you can auto-update to the latest by linking the `src` to:
@@ -52,7 +52,7 @@ For example:
 For quick setup on the `body` tag:
 ```html
 <body>
-  <script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.8.1/_2DNote.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.8.2/_2DNote.min.js"></script>
   <script>
     _2DNote.setAs2DArea(document.body, callbackUponUpdate);
     function callbackUponUpdate() {
@@ -67,7 +67,7 @@ For quick setup of a custom 2D click/touch area:
 <body>
   <div id="2d-area" style="width: 100vw; height: 100vh;">...</div>
   ...
-  <script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.8.1/_2DNote.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.8.2/_2DNote.min.js"></script>
   <script>
     _2DNote.setAs2DArea(document.getElementById('2d-area'), callbackUponUpdate);
     function callbackUponUpdate() {

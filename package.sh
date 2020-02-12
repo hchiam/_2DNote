@@ -60,3 +60,6 @@ sed -i '' '1i\
 '//\ $LIBRARY_NAME\ ${MAJOR}.${MINOR}.${PATCH}'
 ' "${MINIFIED_FILE}"
 # NOTE: the in-place parameter '' is required for Mac
+
+echo NOTE: Make sure to update the version in package.json
+echo
