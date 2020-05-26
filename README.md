@@ -1,8 +1,8 @@
 # _2DNote: 2D Note Generator
 
-[![NPM Download Stats](https://nodei.co/npm/2dnote.png?downloads=true)](https://www.npmjs.com/package/2dnote)
-
 [![version](https://img.shields.io/npm/v/2dnote.svg)]() [![HitCount](http://hits.dwyl.com/hchiam/_2DNote.svg)](http://hits.dwyl.com/hchiam/_2DNote) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+[![NPM Download Stats](https://nodei.co/npm/2dnote.png?downloads=true)](https://www.npmjs.com/package/2dnote)
 
 [Live Demo](https://github.com/hchiam/_2DNote#live-demo)
 
