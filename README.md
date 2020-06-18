@@ -135,3 +135,13 @@ The things you're most likely to use are: [`.play(e)`](https://github.com/hchiam
 ```bash
 npm i 2dnote
 ```
+
+## If you're interested in general accessibility
+
+<https://github.com/hchiam/web-accessibility-course-notes#web-accessibility-a11y-course-notes>
+
+### Other accessibility-related repos
+
+<https://github.com/hchiam/flying-focus>
+
+<https://github.com/hchiam/keyboard-focus-trap>
