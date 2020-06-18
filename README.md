@@ -148,3 +148,9 @@ npm i 2dnote
 <https://github.com/hchiam/flying-focus>
 
 <https://github.com/hchiam/keyboard-focus-trap>
+
+## Local development
+
+```bash
+bash package.sh
+```
