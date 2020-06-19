@@ -61,11 +61,11 @@ sed -i '' '1i\
 ' "${MINIFIED_FILE}"
 # NOTE: the in-place parameter '' is required for Mac
 
-echo NOTE: Make sure to update the version in package.json
-echo
-
 echo "sha384-"
 # print out hash for use in integrity attribute:
 cat "${MINIFIED_FILE}" | openssl dgst -sha384 -binary | openssl base64 -A
+echo
 
+echo
+echo NOTE: Make sure to update the version in package.json
 echo
