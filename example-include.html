@@ -1,5 +1,5 @@
 <head>
-  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   <style>
     * {
       user-select: none;
@@ -47,12 +47,12 @@
 </head>
 
 <body id="2d-area">
-<!-- or: <body onload="_2DNote.setAs2DArea(this);"> -->
+  <!-- or: <body onload="_2DNote.setAs2DArea(this);"> -->
   <div id="main" role="main">
     <h1 id="audio-reminder" aria-hidden="true">Make sure audio is on</h1>
     <p id="instruction" aria-live="polite"></p>
   </div>
-  <i id="sound-icon" class='fas fa-music'></i>
+  <i id="sound-icon" class="fas fa-music"></i>
 
   <!-- INCLUDE _2DNote! -->
   <script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.8.2/_2DNote.min.js"></script>
@@ -60,21 +60,22 @@
 
   <!-- USE _2DNote! -->
   <script>
-    _2DNote.setAs2DArea(document.getElementById('2d-area'), colourSoundIcon);
+    _2DNote.setAs2DArea(document.getElementById("2d-area"), colourSoundIcon);
 
-    setTimeout(function() {
-      document.getElementById('instruction').innerHTML = '<span style="color: lime;">Click</span> and <span style="color: lime;">drag</span> anywhere inside this screen.';
+    setTimeout(function () {
+      document.getElementById("instruction").innerHTML =
+        '<span style="color: lime;">Click</span> and <span style="color: lime;">drag</span> anywhere inside this screen.';
     }, 1000);
 
     // UI instruction display:
-    document.body.addEventListener('mousedown', playAndInstruct);
-    document.body.addEventListener('mouseup', stopAndInstruct);
-    document.body.addEventListener('mousemove', updateAndInstruct);
-    document.body.addEventListener('mouseleave', exitedView);
-    document.body.addEventListener('touchstart', playAndInstruct);
-    document.body.addEventListener('touchend', stopAndInstruct);
-    document.body.addEventListener('touchmove', updateAndInstruct);
-    document.body.addEventListener('touchcancel', exitedView);
+    document.body.addEventListener("mousedown", playAndInstruct);
+    document.body.addEventListener("mouseup", stopAndInstruct);
+    document.body.addEventListener("mousemove", updateAndInstruct);
+    document.body.addEventListener("mouseleave", exitedView);
+    document.body.addEventListener("touchstart", playAndInstruct);
+    document.body.addEventListener("touchend", stopAndInstruct);
+    document.body.addEventListener("touchmove", updateAndInstruct);
+    document.body.addEventListener("touchcancel", exitedView);
 
     let on = false;
 
@@ -105,28 +106,31 @@
     }
 
     function instructToMoveMouse() {
-      document.getElementById('instruction').innerHTML = '<span style="color: lime;">↕</span> = volume, <span style="color: lime;">↔️</span> = pitch';
+      document.getElementById("instruction").innerHTML =
+        '<span style="color: lime;">↕</span> = volume, <span style="color: lime;">↔️</span> = pitch';
     }
 
     function hideAudioReminder() {
-      document.getElementById('audio-reminder').style.display = 'none';
+      document.getElementById("audio-reminder").style.display = "none";
     }
 
     function instructToClickToStart() {
-      document.getElementById('instruction').innerHTML = '<span style="color: lime;">Click</span> screen and <span style="color: lime;">drag</span>';
+      document.getElementById("instruction").innerHTML =
+        '<span style="color: lime;">Click</span> screen and <span style="color: lime;">drag</span>';
     }
 
     function instructToClickToStop() {
       if (on) {
-        document.getElementById('instruction').innerHTML = '<span style="color: lime;">↕</span> = volume, <span style="color: lime;">↔️</span> = pitch <br/><span style="color: lime;">Let go to stop</span>';
+        document.getElementById("instruction").innerHTML =
+          '<span style="color: lime;">↕</span> = volume, <span style="color: lime;">↔️</span> = pitch <br/><span style="color: lime;">Let go to stop</span>';
       }
     }
 
     function toggleSoundIcon() {
       if (on) {
-        document.getElementById('sound-icon').style.visibility = 'visible';
+        document.getElementById("sound-icon").style.visibility = "visible";
       } else {
-        document.getElementById('sound-icon').style.visibility = 'hidden';
+        document.getElementById("sound-icon").style.visibility = "hidden";
       }
     }
 
@@ -137,10 +141,14 @@
       hue = Math.round(hue);
       const comfyVolumeRange = [0, 0.5];
       const saturationRange = [0, 100];
-      let saturation = _2DNote.normalize(volume, comfyVolumeRange, saturationRange);
+      let saturation = _2DNote.normalize(
+        volume,
+        comfyVolumeRange,
+        saturationRange
+      );
       saturation = Math.round(saturation);
-      const hsl = 'hsl(' + String(hue) + ',' + String(saturation) + '%, 50%)';
-      document.getElementById('sound-icon').style.color = hsl;
+      const hsl = "hsl(" + String(hue) + "," + String(saturation) + "%, 50%)";
+      document.getElementById("sound-icon").style.color = hsl;
     }
   </script>
 </body>

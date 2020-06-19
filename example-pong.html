@@ -35,7 +35,8 @@
       color: lime;
     }
 
-    #player-1, #player-2 {
+    #player-1,
+    #player-2 {
       position: absolute;
       width: 100px;
       height: 100px;
@@ -67,7 +68,11 @@
   </style>
 </head>
 
-<body id="2d-area" onclick="toggleSound(event);" onmousemove="_2DNote.update(event,updatePlayer1)">
+<body
+  id="2d-area"
+  onclick="toggleSound(event);"
+  onmousemove="_2DNote.update(event,updatePlayer1)"
+>
   <div id="main" role="main">
     <p id="instruction" aria-live="polite"></p>
     <p id="player-1">Player ①</p>
@@ -81,7 +86,7 @@
 
   <script>
     // USE _2DNote!
-    _2DNote.setAs2DArea(document.getElementById('2d-area'));
+    _2DNote.setAs2DArea(document.getElementById("2d-area"));
     var note_player2 = _2DNote.copy();
     var note_ball = _2DNote.copy();
 
@@ -89,44 +94,48 @@
 
     var w = Math.min(document.documentElement.clientWidth, window.innerWidth);
     var h = Math.min(document.documentElement.clientHeight, window.innerHeight);
-    document.getElementById('player-1').style.left = (w/10 - 50).toString() + 'px';
-    document.getElementById('player-1').style.top = (h*3/4 - 50).toString() + 'px';
-    document.getElementById('player-1').style.width = '100px';
-    document.getElementById('player-1').style.height = '100px';
-    document.getElementById('player-2').style.left = (w*9/10 - 50).toString() + 'px';
-    document.getElementById('player-2').style.top = (h*3/4 - 50).toString() + 'px';
-    document.getElementById('player-2').style.width = '100px';
-    document.getElementById('player-2').style.height = '100px';
+    document.getElementById("player-1").style.left =
+      (w / 10 - 50).toString() + "px";
+    document.getElementById("player-1").style.top =
+      ((h * 3) / 4 - 50).toString() + "px";
+    document.getElementById("player-1").style.width = "100px";
+    document.getElementById("player-1").style.height = "100px";
+    document.getElementById("player-2").style.left =
+      ((w * 9) / 10 - 50).toString() + "px";
+    document.getElementById("player-2").style.top =
+      ((h * 3) / 4 - 50).toString() + "px";
+    document.getElementById("player-2").style.width = "100px";
+    document.getElementById("player-2").style.height = "100px";
 
     // note_player2.play(document.getElementById('player-2'));
 
-    note_ball.play(document.getElementById('ball'));
+    note_ball.play(document.getElementById("ball"));
     var fallbackX = 1;
     var fallbackY = 1;
-    var direction = {x: fallbackX, y: fallbackY};
+    var direction = { x: fallbackX, y: fallbackY };
     setInterval(moveBall, 1);
     function moveBall() {
-      var ball = document.getElementById('ball');
-      var x = parseInt(ball.style.left.replace('px','') || 0);
-      var y = parseInt(ball.style.top.replace('px','') || 0);
-      var w = parseInt(ball.style.width.replace('px','') || 0);
-      var h = parseInt(ball.style.height.replace('px','') || 0);
-      var leftWall = 0 - w/2;
+      var ball = document.getElementById("ball");
+      var x = parseInt(ball.style.left.replace("px", "") || 0);
+      var y = parseInt(ball.style.top.replace("px", "") || 0);
+      var w = parseInt(ball.style.width.replace("px", "") || 0);
+      var h = parseInt(ball.style.height.replace("px", "") || 0);
+      var leftWall = 0 - w / 2;
       var rightWall = document.documentElement.clientWidth - w / 2;
-      var topWall = 0 - h/2;
+      var topWall = 0 - h / 2;
       var bottomWall = document.documentElement.clientHeight - h / 2;
-      if (overlap('player-1', 'ball')) {
-        var player1Box = getBoundingBox('player-1');
-        var ballBox = getBoundingBox('ball');
+      if (overlap("player-1", "ball")) {
+        var player1Box = getBoundingBox("player-1");
+        var ballBox = getBoundingBox("ball");
         leftWall = player1Box.right;
         rightWall = player1Box.left - ballBox.width;
         topWall = player1Box.bottom;
         bottomWall = player1Box.top - ballBox.height;
         beep();
       }
-      if (overlap('player-2', 'ball')) {
-        var player1Box = getBoundingBox('player-2');
-        var ballBox = getBoundingBox('ball');
+      if (overlap("player-2", "ball")) {
+        var player1Box = getBoundingBox("player-2");
+        var ballBox = getBoundingBox("ball");
         leftWall = player1Box.right;
         rightWall = player1Box.left - ballBox.width;
         topWall = player1Box.bottom;
@@ -147,9 +156,9 @@
       } else {
         direction.y = direction.y > 0 ? fallbackY : -fallbackY;
       }
-      ball.style.left = x + direction.x + 'px';
-      ball.style.top = y + direction.y + 'px';
-      note_ball.update(document.getElementById('ball'));
+      ball.style.left = x + direction.x + "px";
+      ball.style.top = y + direction.y + "px";
+      note_ball.update(document.getElementById("ball"));
     }
 
     var on = false;
@@ -165,7 +174,7 @@
 
     function updatePlayer1(volume, frequency) {
       colourPlayer1(volume, frequency);
-      followMouse('player-1');
+      followMouse("player-1");
     }
 
     function followMouse(id) {
@@ -174,8 +183,8 @@
       var y = e.clientY;
       var w = document.getElementById(id).offsetWidth;
       var h = document.getElementById(id).offsetHeight;
-      document.getElementById(id).style.left = x - w/2;
-      document.getElementById(id).style.top = y - h/2;
+      document.getElementById(id).style.left = x - w / 2;
+      document.getElementById(id).style.top = y - h / 2;
     }
 
     function colourPlayer1(volume, frequency) {
@@ -185,34 +194,47 @@
       hue = Math.round(hue);
       var comfyVolumeRange = [0, 0.5];
       var saturationRange = [0, 100];
-      var saturation = _2DNote.normalize(volume, comfyVolumeRange, saturationRange);
+      var saturation = _2DNote.normalize(
+        volume,
+        comfyVolumeRange,
+        saturationRange
+      );
       saturation = Math.round(saturation);
-      var hsl = 'hsl(' + String(hue) + ',' + String(saturation) + '%, 50%)';
-      document.getElementById('player-1').style.background = hsl;
-      document.getElementById('player-1').style.color = 'black';
+      var hsl = "hsl(" + String(hue) + "," + String(saturation) + "%, 50%)";
+      document.getElementById("player-1").style.background = hsl;
+      document.getElementById("player-1").style.color = "black";
     }
 
     function overlap(id1, id2) {
       var e1 = getBoundingBox(id1);
       var e2 = getBoundingBox(id2);
       if (!e1 || !e2) return false;
-      var haveOverlap = !(e1.right < e2.left || 
-                          e1.left > e2.right || 
-                          e1.bottom < e2.top || 
-                          e1.top > e2.bottom);
+      var haveOverlap = !(
+        e1.right < e2.left ||
+        e1.left > e2.right ||
+        e1.bottom < e2.top ||
+        e1.top > e2.bottom
+      );
       return haveOverlap;
     }
 
     function getBoundingBox(id) {
       var element = document.getElementById(id);
       var style = element.style;
-      var x = parseInt(style.left.replace('px',''));
-      var y = parseInt(style.top.replace('px',''));
+      var x = parseInt(style.left.replace("px", ""));
+      var y = parseInt(style.top.replace("px", ""));
       var w = element.offsetWidth;
       var h = element.offsetHeight;
       var right = x + w;
       var bottom = y + h;
-      if (isNaN(x) || isNaN(y) || isNaN(right) || isNaN(bottom) || isNaN(w) || isNaN(h)) {
+      if (
+        isNaN(x) ||
+        isNaN(y) ||
+        isNaN(right) ||
+        isNaN(bottom) ||
+        isNaN(w) ||
+        isNaN(h)
+      ) {
         return null;
       }
       return {
@@ -229,13 +251,14 @@
     function beep() {
       var screenWidth = document.documentElement.clientWidth;
       var screenHeight = document.documentElement.clientHeight;
-      var simulatedCenterClick = { // center: guaranteed != edge
+      var simulatedCenterClick = {
+        // center: guaranteed != edge
         currentTarget: true,
         clientX: screenWidth / 2,
         clientY: screenHeight / 2,
       };
       note_beep.play(simulatedCenterClick);
-      setTimeout(function() {
+      setTimeout(function () {
         note_beep.stop();
       }, 100);
     }
