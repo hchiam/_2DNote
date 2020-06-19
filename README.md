@@ -36,7 +36,11 @@ You can think of the y dimension as the "proximity dimension" (louder = closer t
 **_Yes:_**
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.8.2/_2DNote.min.js"></script>
+<script
+  src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.8.2/_2DNote.min.js"
+  integrity="sha384-9DljwpGkyOlGWZaIk7THKI0D4+E0okks8CKUIRtzkF4qgqMGjBJkTpHl51pTSzgX"
+  crossorigin="anonymous"
+></script>
 ```
 
 While not recommended, you can auto-update to the latest by linking the `src` to:
@@ -56,7 +60,11 @@ For quick setup on the `body` tag:
 
 ```html
 <body>
-  <script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.8.2/_2DNote.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.8.2/_2DNote.min.js"
+    integrity="sha384-9DljwpGkyOlGWZaIk7THKI0D4+E0okks8CKUIRtzkF4qgqMGjBJkTpHl51pTSzgX"
+    crossorigin="anonymous"
+  ></script>
   <script>
     _2DNote.setAs2DArea(document.body, callbackUponUpdate);
     function callbackUponUpdate() {
@@ -72,7 +80,11 @@ For quick setup of a custom 2D click/touch area:
 <body>
   <div id="2d-area" style="width: 100vw; height: 100vh;">...</div>
   ...
-  <script src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.8.2/_2DNote.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.8.2/_2DNote.min.js"
+    integrity="sha384-9DljwpGkyOlGWZaIk7THKI0D4+E0okks8CKUIRtzkF4qgqMGjBJkTpHl51pTSzgX"
+    crossorigin="anonymous"
+  ></script>
   <script>
     _2DNote.setAs2DArea(document.getElementById("2d-area"), callbackUponUpdate);
     function callbackUponUpdate() {
