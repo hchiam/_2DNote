@@ -61,9 +61,9 @@ sed -i '' '1i\
 ' "${MINIFIED_FILE}"
 # NOTE: the in-place parameter '' is required for Mac
 
-echo "sha384-"
+echo
 # print out hash for use in integrity attribute:
-cat "${MINIFIED_FILE}" | openssl dgst -sha384 -binary | openssl base64 -A
+echo sha384-$(cat "${MINIFIED_FILE}" | openssl dgst -sha384 -binary | openssl base64 -A)
 echo
 
 echo
