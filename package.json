@@ -5,6 +5,12 @@
   "unpkg": "_2DNote.min.js",
   "author": "hchiam",
   "description": "_2DNote",
-  "keywords": ["sonification", "2d-position"],
-  "license": "MIT"
+  "keywords": [
+    "sonification",
+    "2d-position"
+  ],
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
