@@ -37,8 +37,8 @@ You can think of the y dimension as the "proximity dimension" (louder = closer t
 
 ```html
 <script
-  src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.8.2/_2DNote.min.js"
-  integrity="sha384-9DljwpGkyOlGWZaIk7THKI0D4+E0okks8CKUIRtzkF4qgqMGjBJkTpHl51pTSzgX"
+  src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.9.0/_2DNote.min.js"
+  integrity="sha384-w9KzgKC5k/00txI3ng7+D2iZ/1HiglYG7YpmTdR8NnwbCr+0qcGiaZC1JGzgOWgD"
   crossorigin="anonymous"
 ></script>
 ```
@@ -61,8 +61,8 @@ For quick setup on the `body` tag:
 ```html
 <body>
   <script
-    src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.8.2/_2DNote.min.js"
-    integrity="sha384-9DljwpGkyOlGWZaIk7THKI0D4+E0okks8CKUIRtzkF4qgqMGjBJkTpHl51pTSzgX"
+    src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.9.0/_2DNote.min.js"
+    integrity="sha384-w9KzgKC5k/00txI3ng7+D2iZ/1HiglYG7YpmTdR8NnwbCr+0qcGiaZC1JGzgOWgD"
     crossorigin="anonymous"
   ></script>
   <script>
@@ -81,8 +81,8 @@ For quick setup of a custom 2D click/touch area:
   <div id="2d-area" style="width: 100vw; height: 100vh;">...</div>
   ...
   <script
-    src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.8.2/_2DNote.min.js"
-    integrity="sha384-9DljwpGkyOlGWZaIk7THKI0D4+E0okks8CKUIRtzkF4qgqMGjBJkTpHl51pTSzgX"
+    src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.9.0/_2DNote.min.js"
+    integrity="sha384-w9KzgKC5k/00txI3ng7+D2iZ/1HiglYG7YpmTdR8NnwbCr+0qcGiaZC1JGzgOWgD"
     crossorigin="anonymous"
   ></script>
   <script>
@@ -121,7 +121,7 @@ The things you're most likely to use are: [`.play(e)`](https://github.com/hchiam
 ### `_2DNote.update(e)` or `_2DNote.update(e, callback)`:
 
 - This causes the note that the `_2DNote` instance is playing to update to the current position of the element or mouse click event, which it figures out for you. (`e` is for event **_or_** element.)
-- `callback` is an optional parameter, and is a function that will be run from within `update()` with this signature: `callback(volume, frequency)`. See full details in [`_2DNote.js`](https://github.com/hchiam/_2DNote/blob/master/_2DNote.js). See usage example in [`example-include.html`](https://github.com/hchiam/_2DNote/blob/master/example-include.html) or [`example-two-notes.html`](https://github.com/hchiam/_2DNote/blob/master/example-two-notes.html).
+- `callback` is an optional parameter, and is a function that will be run from within `update()` with this signature: `callback(volume, frequency, pan)`. See full details in [`_2DNote.js`](https://github.com/hchiam/_2DNote/blob/master/_2DNote.js). See usage example in [`example-include.html`](https://github.com/hchiam/_2DNote/blob/master/example-include.html) or [`example-two-notes.html`](https://github.com/hchiam/_2DNote/blob/master/example-two-notes.html).
 
 ### `_2DNote.stop()`:
 
@@ -138,6 +138,10 @@ The things you're most likely to use are: [`.play(e)`](https://github.com/hchiam
 ### `_2DNote.getVolume(e)`:
 
 - This returns the note volume based on the y coordinate of the element **_or_** mouse click event, which it figures out for you. (`e` is for event **_or_** element.)
+
+### `_2DNote.getPan(e)`:
+
+- This returns the note panning based on the x coordinate of the element **_or_** mouse click event, which it figures out for you. (`e` is for event **_or_** element.) Panning creates binaural audio: if you use headphones, it'll sound like the audio is coming from the left or right side of you.
 
 ### `_2DNote.normalize(value, inputRange, outputRange)`:
 

@@ -1,7 +1,7 @@
 // example usage: _2DNote.play(...) or _2DNote.update(...)
 
 var _2DNote = (function () {
-  var audioContext = new AudioContext();
+  var audioContext = new (AudioContext || webkitAudioContext)();
   var note = null;
 
   var viewXRange = [0, document.documentElement.clientWidth];
@@ -9,6 +9,7 @@ var _2DNote = (function () {
 
   var comfyFrequencyRange = [150, 400];
   var comfyVolumeRange = [0, 0.5]; // technically gain (ranges from 0 to 1)
+  var panRange = [-1, 1];
 
   function setAs2DArea(e, callbackUponUpdate) {
     // e = event or element
@@ -31,6 +32,7 @@ var _2DNote = (function () {
     this.setupExitedViewDetection(e);
     var frequency = this.getFrequency(e);
     var volume = this.getVolume(e);
+    var pan = this.getPan(e);
     var volumeSetup = this.audioContext.createGain();
     volumeSetup.connect(this.audioContext.destination);
     volumeSetup.gain.value = isNaN(volume) ? 0.5 : volume;
@@ -39,12 +41,17 @@ var _2DNote = (function () {
     oscillator.frequency.value = isNaN(frequency) ? 400 : frequency;
     oscillator.connect(volumeSetup);
     // instead of oscillator.connect(this.audioContext.destination);
+    var panner = this.audioContext.createStereoPanner();
+    if (pan) panner.pan.value = pan;
+    volumeSetup.connect(panner);
+    panner.connect(this.audioContext.destination);
     oscillator.start();
     // var delayThatAvoidsCrazyReverbs = 1;
     // oscillator.stop(this.audioContext.currentTime + delayThatAvoidsCrazyReverbs);
     this.note = {
       oscillator: oscillator,
       volumeSetup: volumeSetup,
+      panner: panner,
     };
   }
 
@@ -54,14 +61,17 @@ var _2DNote = (function () {
     if (!this.note) return;
     var frequency = this.getFrequency(e);
     var volume = this.getVolume(e);
+    var pan = this.getPan(e);
     var volumeSetup = this.note.volumeSetup;
     volumeSetup.gain.value = volume;
     var oscillator = this.note.oscillator;
     oscillator.frequency.value = frequency;
+    var panner = this.note.panner;
+    panner.pan.value = pan;
     if (callback) {
-      callback(volume, frequency);
+      callback(volume, frequency, pan);
     } else if (this.callbackUponUpdate) {
-      this.callbackUponUpdate(volume, frequency);
+      this.callbackUponUpdate(volume, frequency, pan);
     }
   }
 
@@ -76,7 +86,7 @@ var _2DNote = (function () {
   function setupExitedViewDetection(e) {
     // TODO: only continue if detect does not already exist
     const element = e ? e : document.body;
-    console.log(element);
+    // console.log(element);
     if (element.removeEventListener && element.addEventListener) {
       element.removeEventListener("mouseleave", this.warnExitedView);
       element.removeEventListener("touchcancel", this.warnExitedView);
@@ -122,6 +132,14 @@ var _2DNote = (function () {
     // technically getting gain (which ranges 0 to 1)
     var volume = this.normalize(y, this.viewYRange, this.comfyVolumeRange);
     return volume;
+  }
+
+  function getPan(e) {
+    // e = event or element
+    var x = this.getX(e);
+    // technically getting gain (which ranges 0 to 1)
+    var pan = this.normalize(x, this.viewYRange, this.panRange);
+    return pan;
   }
 
   function getX(e) {
@@ -202,6 +220,7 @@ var _2DNote = (function () {
     viewYRange: viewYRange,
     comfyFrequencyRange: comfyFrequencyRange,
     comfyVolumeRange: comfyVolumeRange,
+    panRange: panRange,
     setAs2DArea: setAs2DArea,
     play: play,
     update: update,
@@ -210,6 +229,7 @@ var _2DNote = (function () {
     warnExitedView: warnExitedView,
     getFrequency: getFrequency,
     getVolume: getVolume,
+    getPan: getPan,
     getX: getX,
     getY: getY,
     normalize: normalize,
@@ -217,10 +237,10 @@ var _2DNote = (function () {
   };
 })();
 
-if (window) {
+if (typeof window !== "undefined") {
   window._2DNote = _2DNote;
 }
 
-if (module) {
+if (typeof module !== "undefined") {
   module.exports = _2DNote;
 }

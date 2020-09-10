@@ -1,6 +1,6 @@
 {
   "name": "@hchiam/2dnote",
-  "version": "1.8.2",
+  "version": "1.9.0",
   "main": "_2DNote.js",
   "unpkg": "_2DNote.min.js",
   "author": "hchiam",
@@ -15,5 +15,9 @@
   },
   "repository": {
     "url": "git://github.com/hchiam/_2DNote.git"
+  },
+  "scripts": {
+    "package": "bash package.sh; git status -sb; echo; echo Make sure to update the version in package.json;",
+    "publish": "npm publish --access public"
   }
 }

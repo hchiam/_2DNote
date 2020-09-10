@@ -27,7 +27,7 @@ echo "Enter a number:"
 echo
 echo " 0 = Keep as version ${LATEST_RELEASE_VERSION}"
 echo " 1 = Major breaking change? ($(($MAJOR+1)).0.0)"
-echo " 2 = Minor enhancement? ($MAJOR.$(($MINOR+1)).$PATCH)"
+echo " 2 = Minor enhancement? ($MAJOR.$(($MINOR+1)).0)"
 echo " 3 = Backwards-compatible fix? ($MAJOR.$MINOR.$(($PATCH+1)))"
 echo
 read -p "(Choose 1/2/3): " -n 1 -r
@@ -41,6 +41,7 @@ if [[ $REPLY =~ ^1$ ]]; then
 elif [[ $REPLY =~ ^2$ ]]; then
   echo "Changing MINOR version:"
   MINOR="$(($MINOR+1))"
+  PATCH=0
 elif [[ $REPLY =~ ^3$ ]]; then
   echo "Changing PATCH version:"
   PATCH="$(($PATCH+1))"
@@ -61,11 +62,8 @@ sed -i '' '1i\
 ' "${MINIFIED_FILE}"
 # NOTE: the in-place parameter '' is required for Mac
 
-echo
 # print out hash for use in integrity attribute:
 echo sha384-$(cat "${MINIFIED_FILE}" | openssl dgst -sha384 -binary | openssl base64 -A)
-echo
-
 echo
 echo NOTE: Make sure to update the version in package.json
 echo
