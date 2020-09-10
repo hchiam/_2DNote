@@ -4,6 +4,8 @@
 # for use in your website via CDN (i.e. production use),
 # run this command: bash package.sh
 
+# More info: SemVer: https://semver.org
+
 LIBRARY_NAME=_2DNote
 SOURCE_FILE=_2DNote.js # edit this!
 MINIFIED_FILE=_2DNote.min.js # edit this!
