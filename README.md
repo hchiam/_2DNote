@@ -114,7 +114,7 @@ The things you're most likely to use are: [`.play(e)`](https://github.com/hchiam
 
 - This plays a note based on the position of the element or mouse click event, which it figures out for you. (`e` is for event **_or_** element.)
 - **Note:** The note automatically stops playing if the cursor moves outside the _window_. This avoids having users click something outside the window without realizing it.
-- **UX reminder:** If you plan to use `_2DNote` in only one area of the page, you should let users know when the cursor moves outside of that area. To do that, try something like `<tag-name onmouseleave="_2DNote.stop();">` on the enclosing HTML element tag. See [`example-include.html`](https://github.com/hchiam/_2DNote/blob/master/example-include.html) or [`example-two-notes.html`](https://github.com/hchiam/_2DNote/blob/master/example-two-notes.html) for examples placed on the `body` tag.
+- **UX reminder:** If you plan to use `_2DNote` in only one area of the page, you should let users know when the cursor moves outside of that area. To do that, try something like `<tag-name onmouseleave="_2DNote.stop();">` on the enclosing HTML element tag. See [`example-include.html`](https://github.com/hchiam/_2DNote/blob/master/example-include.html) or [`example-two-notes.html`](https://github.com/hchiam/_2DNote/blob/master/example-two-notes.html) for examples placed on the `body` tag. If you'd like to disable the `warnExitedView` when the mouse leaves the `body`, then you can run `document.body.removeEventListener("mouseleave",_2DNote.warnExitedView);`
 
 ### `_2DNote.update(e)` or `_2DNote.update(e, callback)`:
 
