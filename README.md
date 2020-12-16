@@ -33,8 +33,8 @@ You can think of the y dimension as the "proximity dimension" (louder = closer t
 
 ```html
 <script
-  src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.11.0/_2DNote.min.js"
-  integrity="sha384-30VciyrK3oxNqeJtAByvDhBb484yEzuUwxbhXtWPr427EAgFFe2zdRdM7/ajwX/N"
+  src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.12.0/_2DNote.min.js"
+  integrity="sha384-WdS+mavw33iD6+LA5WvOOdklYxzu60nE9DdK9RlJITvWzSJPeF8pF1ln7VrWa+yC"
   crossorigin="anonymous"
 ></script>
 ```
@@ -57,8 +57,8 @@ For quick setup on the `body` tag:
 ```html
 <body>
   <script
-    src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.11.0/_2DNote.min.js"
-    integrity="sha384-30VciyrK3oxNqeJtAByvDhBb484yEzuUwxbhXtWPr427EAgFFe2zdRdM7/ajwX/N"
+    src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.12.0/_2DNote.min.js"
+    integrity="sha384-WdS+mavw33iD6+LA5WvOOdklYxzu60nE9DdK9RlJITvWzSJPeF8pF1ln7VrWa+yC"
     crossorigin="anonymous"
   ></script>
   <script>
@@ -77,8 +77,8 @@ For quick setup of a custom 2D click/touch area:
   <div id="2d-area" style="width: 100vw; height: 100vh;">...</div>
   ...
   <script
-    src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.11.0/_2DNote.min.js"
-    integrity="sha384-30VciyrK3oxNqeJtAByvDhBb484yEzuUwxbhXtWPr427EAgFFe2zdRdM7/ajwX/N"
+    src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.12.0/_2DNote.min.js"
+    integrity="sha384-WdS+mavw33iD6+LA5WvOOdklYxzu60nE9DdK9RlJITvWzSJPeF8pF1ln7VrWa+yC"
     crossorigin="anonymous"
   ></script>
   <script>
@@ -120,9 +120,10 @@ The things you're most likely to use are: [`.play(e)`](https://github.com/hchiam
 
 - This holds the information about the note (oscillator, volumeSetup) that the `_2DNote` instance can play.
 
-### `_2DNote.play(e)`:
+### `_2DNote.play(e, setupExitDetection = true)`:
 
 - This plays a note based on the position of the element or mouse click event, which it figures out for you. (`e` is for event **_or_** element.)
+- `setupExitDetection` is an optional parameter, and is `true` by default. You most likely will want to do either `_2DNote.play(e)` or `_2DNote.play(e, false)`. This parameter tells `_2DNote` whether it should play an "exit" sound when you leave the 2D area.
 - **Note:** The note automatically stops playing if the cursor moves outside the _window_. This avoids having users click something outside the window without realizing it.
 - **UX reminder:** If you plan to use `_2DNote` in only one area of the page, you should let users know when the cursor moves outside of that area. To do that, try something like `<tag-name onmouseleave="_2DNote.stop();">` on the enclosing HTML element tag. See [`example-include.html`](https://github.com/hchiam/_2DNote/blob/master/example-include.html) or [`example-two-notes.html`](https://github.com/hchiam/_2DNote/blob/master/example-two-notes.html) for examples placed on the `body` tag. If you'd like to disable the `warnExitedView` when the mouse leaves the `body`, then you can run `document.body.removeEventListener("mouseleave",_2DNote.warnExitedView);`
 
