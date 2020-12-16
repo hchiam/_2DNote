@@ -11,7 +11,7 @@ var _2DNote = (function () {
   var comfyVolumeRange = [0, 0.5]; // technically gain (ranges from 0 to 1)
   var panRange = [-1, 1];
 
-  function setAs2DArea(e, callbackUponUpdate) {
+  function setAs2DArea(e, callbackUponUpdate, setupExitDetection = true) {
     // e = event or element
     // example usage: _2DNote.setAs2DArea(document.getElementById('2d-area', callbackUponUpdate));
     this.callbackUponUpdate = callbackUponUpdate;
@@ -22,7 +22,7 @@ var _2DNote = (function () {
     element.addEventListener("touchstart", this.play.bind(this));
     element.addEventListener("touchend", this.stop.bind(this));
     element.addEventListener("touchmove", this.update.bind(this));
-    this.setupExitedViewDetection(element);
+    if (setupExitDetection) this.setupExitedViewDetection(element);
   }
 
   function play(e) {
