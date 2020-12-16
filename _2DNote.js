@@ -25,11 +25,11 @@ var _2DNote = (function () {
     if (setupExitDetection) this.setupExitedViewDetection(element);
   }
 
-  function play(e) {
+  function play(e, setupExitDetection = true) {
     // e = event or element
     // example usage: <body onmousedown="_2DNote.play(event);" style="width: 100vw; height: 100vh;" ontouchstart="_2DNote.play(event);"></body>
     this.stop();
-    this.setupExitedViewDetection(e);
+    if (setupExitDetection) this.setupExitedViewDetection(e);
     var frequency = this.getFrequency(e);
     var volume = this.getVolume(e);
     var pan = this.getPan(e);
