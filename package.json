@@ -1,6 +1,6 @@
 {
   "name": "@hchiam/2dnote",
-  "version": "1.10.0",
+  "version": "1.11.0",
   "main": "_2DNote.js",
   "unpkg": "_2DNote.min.js",
   "author": "hchiam",
