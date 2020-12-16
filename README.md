@@ -33,8 +33,8 @@ You can think of the y dimension as the "proximity dimension" (louder = closer t
 
 ```html
 <script
-  src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.10.0/_2DNote.min.js"
-  integrity="sha384-fXFArA/Ne56b3d0BDODVKlGJmEW8biaE1H9vnXbV2JzYoMhCtjLntJX8Km+TNzvb"
+  src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.11.0/_2DNote.min.js"
+  integrity="sha384-30VciyrK3oxNqeJtAByvDhBb484yEzuUwxbhXtWPr427EAgFFe2zdRdM7/ajwX/N"
   crossorigin="anonymous"
 ></script>
 ```
@@ -57,8 +57,8 @@ For quick setup on the `body` tag:
 ```html
 <body>
   <script
-    src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.10.0/_2DNote.min.js"
-    integrity="sha384-fXFArA/Ne56b3d0BDODVKlGJmEW8biaE1H9vnXbV2JzYoMhCtjLntJX8Km+TNzvb"
+    src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.11.0/_2DNote.min.js"
+    integrity="sha384-30VciyrK3oxNqeJtAByvDhBb484yEzuUwxbhXtWPr427EAgFFe2zdRdM7/ajwX/N"
     crossorigin="anonymous"
   ></script>
   <script>
@@ -77,8 +77,8 @@ For quick setup of a custom 2D click/touch area:
   <div id="2d-area" style="width: 100vw; height: 100vh;">...</div>
   ...
   <script
-    src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.10.0/_2DNote.min.js"
-    integrity="sha384-fXFArA/Ne56b3d0BDODVKlGJmEW8biaE1H9vnXbV2JzYoMhCtjLntJX8Km+TNzvb"
+    src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.11.0/_2DNote.min.js"
+    integrity="sha384-30VciyrK3oxNqeJtAByvDhBb484yEzuUwxbhXtWPr427EAgFFe2zdRdM7/ajwX/N"
     crossorigin="anonymous"
   ></script>
   <script>
