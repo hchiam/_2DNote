@@ -33,8 +33,8 @@ You can think of the y dimension as the "proximity dimension" (louder = closer t
 
 ```html
 <script
-  src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.9.0/_2DNote.min.js"
-  integrity="sha384-w9KzgKC5k/00txI3ng7+D2iZ/1HiglYG7YpmTdR8NnwbCr+0qcGiaZC1JGzgOWgD"
+  src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.11.0/_2DNote.min.js"
+  integrity="sha384-30VciyrK3oxNqeJtAByvDhBb484yEzuUwxbhXtWPr427EAgFFe2zdRdM7/ajwX/N"
   crossorigin="anonymous"
 ></script>
 ```
@@ -57,8 +57,8 @@ For quick setup on the `body` tag:
 ```html
 <body>
   <script
-    src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.9.0/_2DNote.min.js"
-    integrity="sha384-w9KzgKC5k/00txI3ng7+D2iZ/1HiglYG7YpmTdR8NnwbCr+0qcGiaZC1JGzgOWgD"
+    src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.11.0/_2DNote.min.js"
+    integrity="sha384-30VciyrK3oxNqeJtAByvDhBb484yEzuUwxbhXtWPr427EAgFFe2zdRdM7/ajwX/N"
     crossorigin="anonymous"
   ></script>
   <script>
@@ -77,8 +77,8 @@ For quick setup of a custom 2D click/touch area:
   <div id="2d-area" style="width: 100vw; height: 100vh;">...</div>
   ...
   <script
-    src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.9.0/_2DNote.min.js"
-    integrity="sha384-w9KzgKC5k/00txI3ng7+D2iZ/1HiglYG7YpmTdR8NnwbCr+0qcGiaZC1JGzgOWgD"
+    src="https://cdn.jsdelivr.net/gh/hchiam/_2DNote@1.11.0/_2DNote.min.js"
+    integrity="sha384-30VciyrK3oxNqeJtAByvDhBb484yEzuUwxbhXtWPr427EAgFFe2zdRdM7/ajwX/N"
     crossorigin="anonymous"
   ></script>
   <script>
@@ -88,6 +88,18 @@ For quick setup of a custom 2D click/touch area:
     }
   </script>
 </body>
+```
+
+To disable the "exit" sound:
+
+```js
+var useExitDetection = false;
+
+_2DNote.setAs2DArea(
+  document.querySelector("#your_element"),
+  callbackUponUpdate,
+  useExitDetection
+);
 ```
 
 For a full working code example, see [`example-include.html`](https://github.com/hchiam/_2DNote/blob/master/example-include.html)
