@@ -1,4 +1,4 @@
-# \_2DNote: 2D Note Generator [![npm version](https://img.shields.io/npm/v/2dnote.svg?style=flat-square)](https://www.npmjs.com/package/2dnote) [![GitHub package version](https://img.shields.io/github/package-json/v/hchiam/_2DNote?style=flat-square)](https://github.com/hchiam/_2DNote/packages/320003) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT) [![HitCount](http://hits.dwyl.com/hchiam/_2DNote.svg)](http://hits.dwyl.com/hchiam/_2DNote)
+# \_2DNote: 2D Note Generator <!-- [![npm version](https://img.shields.io/npm/v/2dnote.svg?style=flat-square)](https://www.npmjs.com/package/2dnote) --> [![GitHub package version](https://img.shields.io/github/package-json/v/hchiam/_2DNote?style=flat-square)](https://github.com/hchiam/_2DNote/packages/320003) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT) [![HitCount](http://hits.dwyl.com/hchiam/_2DNote.svg)](http://hits.dwyl.com/hchiam/_2DNote)
 
 [Live Demo](https://github.com/hchiam/_2DNote#live-demo)
 
@@ -156,7 +156,9 @@ The things you're most likely to use are: [`.play(e)`](https://github.com/hchiam
 
 - This maps the value found within the input range (`[inputRangeMin, inputRangeMax]`) to be in the chosen output range (`[outputRangeMin, outputRangeMax]`). It returns the re-mapped value.
 
-## Also available on NPM
+## Older version also available on NPM
+
+(But I'd just stick to the GitHub package version.)
 
 <https://www.npmjs.com/package/2dnote>
 
@@ -164,7 +166,7 @@ The things you're most likely to use are: [`.play(e)`](https://github.com/hchiam
 npm i 2dnote
 ```
 
-See the notes in this example to publish to both GitHub packages page and npm packages page: <https://github.com/hchiam/generator-hchiam-learning/commit/f3bbdfa93ae7c27e8d32b04f587afc644048e486>
+See the notes in this example to publish to both GitHub packages page and npm packages page: <https://github.com/hchiam/generator-hchiam-learning/commit/f3bbdfa93ae7c27e8d32b04f587afc644048e486> (But I'd just stick to the GitHub package version.)
 
 ## If you're interested in general accessibility
 
