@@ -164,6 +164,8 @@ The things you're most likely to use are: [`.play(e)`](https://github.com/hchiam
 npm i 2dnote
 ```
 
+See the notes in this example to publish to both GitHub packages page and npm packages page: <https://github.com/hchiam/generator-hchiam-learning/commit/f3bbdfa93ae7c27e8d32b04f587afc644048e486>
+
 ## If you're interested in general accessibility
 
 <https://github.com/hchiam/web-accessibility-course-notes#web-accessibility-a11y-course-notes>
