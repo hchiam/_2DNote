@@ -1,6 +1,6 @@
 {
   "name": "@hchiam/2dnote",
-  "version": "1.12.0",
+  "version": "1.12.1",
   "main": "_2DNote.js",
   "unpkg": "_2DNote.min.js",
   "author": "hchiam",
@@ -10,9 +10,6 @@
     "2d-position"
   ],
   "license": "MIT",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "repository": {
     "url": "git://github.com/hchiam/_2DNote.git"
   },
