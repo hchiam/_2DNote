@@ -1,3 +1,5 @@
+/*! LICENSE: https://github.com/hchiam/_2DNote/blob/master/LICENSE */
+
 // example usage: _2DNote.play(...) or _2DNote.update(...)
 
 var _2DNote = (function () {
