@@ -138,7 +138,7 @@ var _2DNote = (function () {
     // e = event or element
     var x = this.getX(e);
     // technically getting gain (which ranges 0 to 1)
-    var pan = this.normalize(x, this.viewYRange, this.panRange);
+    var pan = this.normalize(x, this.viewXRange, this.panRange);
     return pan;
   }
 
@@ -179,7 +179,12 @@ var _2DNote = (function () {
     var ratioAdjustment =
       (outputRangeMax - outputRangeMin) / (inputRangeMax - inputRangeMin);
     var outputBias = outputRangeMin;
-    return inputBias * ratioAdjustment + outputBias;
+    var output = inputBias * ratioAdjustment + outputBias;
+    var clampedOutput = Math.min(
+      Math.max(output, outputRangeMin),
+      outputRangeMax
+    );
+    return clampedOutput;
   }
 
   function copy() {
