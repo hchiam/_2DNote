@@ -17,7 +17,7 @@ var _2DNote = (function () {
     // e = event or element
     // example usage: _2DNote.setAs2DArea(document.getElementById('2d-area', callbackUponUpdate));
     this.callbackUponUpdate = callbackUponUpdate;
-    const element = e ? e : document.body;
+    var element = e ? e : document.body;
     element.addEventListener("mousedown", this.play.bind(this));
     element.addEventListener("mouseup", this.stop.bind(this));
     element.addEventListener("mousemove", this.update.bind(this));
@@ -87,7 +87,7 @@ var _2DNote = (function () {
 
   function setupExitedViewDetection(e) {
     // TODO: only continue if detect does not already exist
-    const element = e ? e : document.body;
+    var element = e ? e : document.body;
     // console.log(element);
     if (element.removeEventListener && element.addEventListener) {
       element.removeEventListener("mouseleave", this.warnExitedView);
@@ -98,7 +98,7 @@ var _2DNote = (function () {
   }
 
   function warnExitedView(e) {
-    const element = e ? e : document.body;
+    var element = e ? e : document.body;
     var screenWidth = element.clientWidth;
     var screenHeight = element.clientHeight;
     var simulatedCenterClick = {
