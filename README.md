@@ -16,6 +16,8 @@ You can think of the y dimension as the "proximity dimension" (louder = closer t
 
 \_2DNote.js is made from pure "vanilla" JavaScript. So no special install steps required. :smile:
 
+To keep things as flexible as possible, you'll need to handle keyboard-only interaction. That said, you might be interested in [hchiam/draggable](https://github.com/hchiam/draggable), which focuses on letting you moving elements around with mouse, touch, keyboard, or screen reader!
+
 ### Further reading
 
 - [Sonification](https://en.wikipedia.org/wiki/Sonification)
