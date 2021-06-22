@@ -1,4 +1,4 @@
-# \_2DNote: 2D Note Generator <!-- [![npm version](https://img.shields.io/npm/v/2dnote.svg?style=flat-square)](https://www.npmjs.com/package/2dnote) --> [![GitHub package version](https://img.shields.io/github/package-json/v/hchiam/_2DNote?style=flat-square)](https://github.com/hchiam/_2DNote/packages/320003) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT) [![HitCount](http://hits.dwyl.com/hchiam/_2DNote.svg)](http://hits.dwyl.com/hchiam/_2DNote)
+# \_2DNote: 2D Note Generator <!-- [![npm version](https://img.shields.io/npm/v/2dnote.svg?style=flat-square)](https://www.npmjs.com/package/2dnote) --> [![GitHub package version](https://img.shields.io/github/package-json/v/hchiam/_2DNote?style=flat-square)](https://github.com/hchiam/_2DNote/packages/320003) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 [Live Demo](https://github.com/hchiam/_2DNote#live-demo)
 
