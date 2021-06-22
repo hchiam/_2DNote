@@ -178,6 +178,8 @@ See the notes in this example to publish to both GitHub packages page and npm pa
 
 <https://github.com/hchiam/keyboard-focus-trap>
 
+<https://github.com/hchiam/draggable>
+
 ## Local development
 
 ```bash
