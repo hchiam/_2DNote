@@ -21,7 +21,7 @@ You can think of the y dimension as the "proximity dimension" (louder = closer t
 - [Sonification](https://en.wikipedia.org/wiki/Sonification)
 - [Auditory display](https://en.wikipedia.org/wiki/Auditory_display)
 
-## [Live Demo](https://codepen.io/hchiam/full/eYYdVeX)
+## [Live Demo (requires mouse or touch)](https://codepen.io/hchiam/full/eYYdVeX)
 
 <https://codepen.io/hchiam/full/eYYdVeX>
 
