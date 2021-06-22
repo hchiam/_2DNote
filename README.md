@@ -187,3 +187,11 @@ See the notes in this example to publish to both GitHub packages page and npm pa
 ```bash
 bash package.sh
 ```
+
+```bash
+# do this first:
+yarn publish # supply new version number in CLI
+
+# do this second:
+yarn package
+```
