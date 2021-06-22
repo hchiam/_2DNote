@@ -14,7 +14,7 @@
 
 You can think of the y dimension as the "proximity dimension" (louder = closer to you), and the x dimension as the "piano dimension" (left-to-right = low-to-high notes).
 
-\_2DNote.js is made from pure "vanilla" JavaScript. So no extra dependencies. :smile:
+\_2DNote.js is made from pure "vanilla" JavaScript. So no special install steps required. :smile:
 
 ### Further reading
 
