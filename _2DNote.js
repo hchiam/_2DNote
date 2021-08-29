@@ -13,7 +13,8 @@ var _2DNote = (function () {
   var comfyVolumeRange = [0, 0.5]; // technically gain (ranges from 0 to 1)
   var panRange = [-1, 1];
 
-  function setAs2DArea(e, callbackUponUpdate, setupExitDetection = true) {
+  function setAs2DArea(e, callbackUponUpdate, setupExitDetection) {
+    setupExitDetection = setupExitDetection || true;
     // e = event or element
     // example usage: _2DNote.setAs2DArea(document.getElementById('2d-area', callbackUponUpdate));
     this.callbackUponUpdate = callbackUponUpdate;
@@ -27,7 +28,8 @@ var _2DNote = (function () {
     if (setupExitDetection) this.setupExitedViewDetection(element);
   }
 
-  function play(e, setupExitDetection = true) {
+  function play(e, setupExitDetection) {
+    setupExitDetection = setupExitDetection || true;
     // e = event or element
     // example usage: <body onmousedown="_2DNote.play(event);" style="width: 100vw; height: 100vh;" ontouchstart="_2DNote.play(event);"></body>
     this.stop();
@@ -172,11 +174,11 @@ var _2DNote = (function () {
     }
   }
 
-  function normalize(
-    value,
-    [inputRangeMin, inputRangeMax],
-    [outputRangeMin, outputRangeMax]
-  ) {
+  function normalize(value, inputRange, outputRange) {
+    var inputRangeMin = inputRange[0];
+    var inputRangeMax = inputRange[1];
+    var outputRangeMin = outputRange[0];
+    var outputRangeMax = outputRange[1];
     var inputBias = value - inputRangeMin;
     var ratioAdjustment =
       (outputRangeMax - outputRangeMin) / (inputRangeMax - inputRangeMin);
